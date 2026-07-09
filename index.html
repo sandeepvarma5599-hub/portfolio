@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>S. Srinivasa Sandeep Varma | Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav id="navbar">
+    <nav class="navbar">
         <div class="nav-container">
-            <h1 class="logo">MyPortfolio.</h1>
+            <a href="#" class="logo">SSV<span>.</span></a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -20,39 +23,63 @@
         </div>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2>Hello, I'm <span class="highlight">Your Name</span></h2>
-            <p>I am a web developer building clean and responsive websites.</p>
+    <header id="home" class="hero-section">
+        <div class="hero-container">
+            <div class="avatar-wrapper">
+                <div class="avatar-glow-circle"></div>
+                <img src="profile.png" alt="S. Srinivasa Sandeep Varma" class="hero-avatar">
+            </div>
+            <div class="hero-text-content">
+                <h1 class="hero-title">Sirivuri Srinivasa Sandeep Varma</h1>
+                <p class="hero-subtitle">Tech & Mechanical Enthusiast | Building Foundations in Mechatronics, AI and cybersecurity</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Work</a>
+                    <a href="#contact" class="btn btn-secondary">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-card">
+                <p>Hello! I am Sirivuri Srinivasa Sandeep Varma, a developer and tech enthusiast passionate about exploring the intersection of hardware and software. I love learning about intelligent systems, modern coding methodologies, and finding creative solutions to technical challenges.</p>
+            </div>
         </div>
     </section>
 
-    <section id="projects" class="projects">
-        <h2>My Projects</h2>
-        <div class="project-grid">
-            
-            <div class="project-card">
-                <div class="project-info">
-                    <h3>Project 1</h3>
-                    <p>A cool website I built using HTML and CSS.</p>
+    <section id="projects" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Project One</h3>
+                        <p>Modern web portal featuring optimized frontend layouts and styling configurations.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Project Two</h3>
+                        <p>Interactive web environment built with strict code standards.</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="project-card">
-                <div class="project-info">
-                    <h3>Project 2</h3>
-                    <p>Another awesome project I created from scratch.</p>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <h2>Get In Touch</h2>
-        <p>Email me at: your-email@example.com</p>
+    <section id="contact" class="section">
+        <div class="container text-center">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-text">Ready to build or coordinate next-gen platforms? Reach out via email.</p>
+            <a href="mailto:sandeepvarma5599@gmail.com" class="btn btn-primary">Send Email</a>
+        </div>
     </section>
 
-    <script src="script.js"></script>
+    <footer class="footer">
+        <p>&copy; 2026 S. Srinivasa Sandeep Varma. Systems Initiated.</p>
+    </footer>
+
 </body>
 </html>
