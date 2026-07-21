@@ -98,27 +98,16 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
             font-size: 1.5rem;
             text-decoration: none;
             letter-spacing: 1px;
-        }
-
-        .logo-img {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            object-fit: cover;
-            border: 1px solid var(--accent-blue);
         }
 
         .logo span { color: var(--accent-blue); }
@@ -165,9 +154,9 @@
 
         .avatar-wrapper {
             position: relative;
-            width: 160px;
-            height: 160px;
-            border-radius: 16px; 
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -176,9 +165,9 @@
 
         .avatar-glow-circle {
             position: absolute;
-            width: 106%;
-            height: 106%;
-            border-radius: 18px; 
+            width: 110%;
+            height: 110%;
+            border-radius: 50%;
             border: 2px solid var(--accent-blue);
             box-shadow: 0 0 20px var(--accent-glow);
             animation: pulse 2s infinite alternate;
@@ -187,7 +176,7 @@
         .hero-avatar {
             width: 100%;
             height: 100%;
-            border-radius: 16px; 
+            border-radius: 50%;
             object-fit: cover;
             position: relative;
             z-index: 2;
@@ -215,7 +204,7 @@
 
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.03); opacity: 0.4; }
+            100% { transform: scale(1.05); opacity: 0.4; }
         }
 
         /* --- About & Skills --- */
@@ -410,10 +399,7 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="profile.jpg" alt="Logo Avatar" class="logo-img">
-                SSV<span>.</span>
-            </a>
+            <a href="#" class="logo">SSV<span>.</span></a>
             <button class="hamburger" id="hamburger">☰</button>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
