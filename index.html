@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Base & Variables (Option 3: Cyberpunk / AI Hacker) --- */
+        /* --- Base & Variables --- */
         :root {
             --bg-dark: #090514;     /* Midnight Purple/Black */
             --bg-panel: #171026;    /* Slightly lighter purple/black */
@@ -45,6 +45,16 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* --- Particle Background Layer --- */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Keeps it behind all your content */
         }
 
         h1, h2, h3, .logo {
@@ -112,14 +122,6 @@
             font-size: 1.5rem;
             text-decoration: none;
             letter-spacing: 1px;
-        }
-
-        .logo-img {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            object-fit: cover;
-            border: 1px solid var(--accent-blue);
         }
 
         .logo span { color: var(--accent-blue); }
@@ -239,7 +241,7 @@
         }
 
         .skill-card {
-            background: var(--bg-panel);
+            background: var(--glass-bg);
             padding: 2rem;
             border-radius: 8px;
             border: 1px solid var(--glass-border);
@@ -254,6 +256,7 @@
         .skill-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-blue);
+            background: var(--bg-panel);
         }
 
         .skill-card h4 {
@@ -281,6 +284,7 @@
         .project-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-blue);
+            background: var(--bg-panel);
         }
 
         .project-card h3 {
@@ -408,6 +412,8 @@
     </style>
 </head>
 <body>
+
+    <div id="particles-js"></div>
 
     <nav class="navbar">
         <div class="nav-container">
@@ -547,8 +553,62 @@
         </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
     <script>
-        // 1. Mobile Menu Toggle
+        // 1. Initialize Particles.js
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 60,
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#10B981" },
+                "shape": { "type": "circle" },
+                "opacity": {
+                    "value": 0.4,
+                    "random": false
+                },
+                "size": {
+                    "value": 3,
+                    "random": true
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#10B981",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": { "opacity": 0.8 }
+                    },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // 2. Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
 
@@ -563,7 +623,7 @@
             });
         });
 
-        // 2. Dynamic Typing Effect
+        // 3. Dynamic Typing Effect
         const typeWriterElement = document.getElementById('typewriter');
         const phrases = [
             "AI & Robotics Enthusiast",
@@ -604,7 +664,7 @@
         // Start typing effect
         setTimeout(typeEffect, 1000);
 
-        // 3. Scroll Reveal Animation using IntersectionObserver
+        // 4. Scroll Reveal Animation using IntersectionObserver
         const revealElements = document.querySelectorAll('.reveal');
 
         const revealOptions = {
@@ -627,7 +687,7 @@
             revealOnScroll.observe(el);
         });
 
-        // 4. Smooth scrolling offset for fixed navbar
+        // 5. Smooth scrolling offset for fixed navbar
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
