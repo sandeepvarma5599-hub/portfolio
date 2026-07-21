@@ -20,16 +20,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Base & Variables --- */
+        /* --- Base & Variables (Cadmium Orange & USAFA Blue Theme) --- */
         :root {
-            --bg-dark: #090514;     /* Midnight Purple/Black */
-            --bg-panel: #171026;    /* Slightly lighter purple/black */
-            --text-main: #A78BFA;   /* Soft lavender text */
-            --text-light: #F3F4F6;  /* White text for headings */
-            --accent-blue: #10B981; /* Neon Emerald Green */
-            --accent-glow: rgba(16, 185, 129, 0.5);
-            --glass-bg: rgba(23, 16, 38, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --bg-dark: #ED872D;     /* Full Body: Cadmium Orange */
+            --bg-panel: #F49845;    /* Slightly lighter orange for card contrast */
+            --text-main: #1A1A1A;   /* Near black for highly readable paragraph text */
+            --text-light: #000000;  /* Pure black for bold headings */
+            --accent-blue: #004F98; /* Highlight: US Air Force Academy Blue */
+            --accent-glow: rgba(0, 79, 152, 0.4);
+            --glass-bg: rgba(255, 255, 255, 0.15); /* Light glass effect */
+            --glass-border: rgba(0, 79, 152, 0.2); /* USAFA Blue tinted border */
         }
 
         * {
@@ -58,7 +58,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: #05020a;
+            background-color: var(--bg-dark);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -67,6 +67,7 @@
             padding: 0 10%;
             font-family: 'Courier New', Courier, monospace;
             color: var(--accent-blue);
+            font-weight: 700;
             font-size: 1.2rem;
             transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.8s ease;
         }
@@ -74,7 +75,7 @@
         .terminal-line {
             min-height: 1.5rem;
             margin-bottom: 10px;
-            text-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+            text-shadow: 0 0 4px rgba(0, 79, 152, 0.3);
         }
 
         .cursor {
@@ -147,7 +148,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(9, 5, 20, 0.8);
+            background: rgba(237, 135, 45, 0.9); /* Matches Cadmium Orange */
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
@@ -181,9 +182,9 @@
         }
 
         .nav-links a {
-            color: var(--text-main);
+            color: var(--text-light);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.3s;
         }
 
@@ -253,7 +254,7 @@
         .typewriter-text {
             color: var(--accent-blue);
             font-size: 1.5rem;
-            font-weight: 500;
+            font-weight: 700;
             min-height: 30px;
         }
 
@@ -261,7 +262,7 @@
             font-size: 1.1rem;
             max-width: 750px;
             margin-bottom: 1.5rem;
-            color: var(--text-light);
+            color: var(--text-main);
             font-weight: 500;
         }
 
@@ -349,12 +350,12 @@
         }
 
         .tag {
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(0, 79, 152, 0.1);
             color: var(--accent-blue);
             padding: 0.4rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 700;
         }
 
         /* --- Minimal Contact Section --- */
@@ -392,8 +393,8 @@
 
         .email-box {
             display: inline-block;
-            background-color: var(--text-light);
-            color: #000000;
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
             padding: 0.8rem 1.5rem;
             border-radius: 6px;
             text-decoration: none;
@@ -404,7 +405,7 @@
 
         .email-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(243, 244, 246, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 79, 152, 0.3);
         }
 
         .contact-right {
@@ -672,7 +673,7 @@
             }, 500);
         });
 
-        // 1. Initialize Particles.js (Upward Drift Matrix Style)
+        // 1. Initialize Particles.js (USAFA Blue Particles)
         function initParticles() {
             particlesJS("particles-js", {
                 "particles": {
@@ -680,10 +681,10 @@
                         "value": 90,
                         "density": { "enable": true, "value_area": 800 }
                     },
-                    "color": { "value": "#10B981" },
+                    "color": { "value": "#004F98" },
                     "shape": { "type": "circle" },
                     "opacity": {
-                        "value": 0.5,
+                        "value": 0.6,
                         "random": true,
                         "anim": {
                             "enable": true,
@@ -786,7 +787,7 @@
         const revealElements = document.querySelectorAll('.reveal');
 
         const revealOptions = {
-            threshold: 0.05, // Lowered threshold to 5% so it triggers easily on tall mobile screens
+            threshold: 0.05, 
             rootMargin: "0px 0px -20px 0px"
         };
 
