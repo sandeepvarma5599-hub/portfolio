@@ -9,6 +9,9 @@
     <meta name="keywords" content="Sirivuri Srinivasa Sandeep Varma, Sandeep Varma portfolio, AI, Cybersecurity, Data Analytics, Software Engineer">
     <meta name="author" content="Sirivuri Srinivasa Sandeep Varma">
     
+    <link rel="icon" type="image/jpeg" href="profile.jpg">
+    <link rel="apple-touch-icon" href="profile.jpg">
+    
     <meta name="google-site-verification" content="DELETE_THIS_TEXT_AND_PASTE_YOUR_REAL_CODE_HERE" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,7 +104,6 @@
             align-items: center;
         }
 
-        /* Integrated Image Profile Logo Container */
         .logo {
             display: flex;
             align-items: center;
@@ -619,7 +621,7 @@
                     observer.unobserve(entry.target); // Only animate once
                 }
             });
-        }, revealOnScroll);
+        }, revealOptions);
 
         revealElements.forEach(el => {
             revealOnScroll.observe(el);
