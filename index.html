@@ -681,6 +681,12 @@
                             
                             // Trigger the background particles to initialize after reveal
                             initParticles();
+                            
+                            // FORCE HERO ITEMS ACTIVE (Fixes initial viewport mobile animation bug)
+                            document.querySelectorAll('#home .reveal').forEach(el => {
+                                el.classList.add('active');
+                            });
+
                             // Start Hero Typing effect
                             setTimeout(typeHeroEffect, 800);
                         }, 800);
