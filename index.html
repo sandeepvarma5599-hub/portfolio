@@ -457,6 +457,9 @@
             .contact-left h2 {
                 font-size: 2.5rem;
             }
+            
+            /* Give a little more padding on mobile so content isn't flush with edges */
+            .about-card { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
@@ -779,12 +782,12 @@
             setTimeout(typeHeroEffect, typingSpeed);
         }
 
-        // 4. Scroll Reveal Animation using IntersectionObserver
+        // 4. Scroll Reveal Animation using IntersectionObserver - FIXED FOR MOBILE
         const revealElements = document.querySelectorAll('.reveal');
 
         const revealOptions = {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px"
+            threshold: 0.05, // Lowered threshold to 5% so it triggers easily on tall mobile screens
+            rootMargin: "0px 0px -20px 0px"
         };
 
         const revealOnScroll = new IntersectionObserver(function(entries, observer) {
