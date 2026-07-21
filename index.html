@@ -9,9 +9,9 @@
     <meta name="keywords" content="Sirivuri Srinivasa Sandeep Varma, Sandeep Varma portfolio, AI, Cybersecurity, Data Analytics, Mechanical, Software Engineer">
     <meta name="author" content="Sirivuri Srinivasa Sandeep Varma">
     
-    <link rel="icon" type="image/jpeg" href="profile.jpg">
-    <link rel="shortcut icon" type="image/jpeg" href="profile.jpg">
-    <link rel="apple-touch-icon" href="profile.jpg">
+    <link rel="icon" type="image/jpeg" href="sandeep.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="sandeep.jpg">
+    <link rel="apple-touch-icon" href="sandeep.jpg">
     
     <meta name="google-site-verification" content="QR3Ls7ugxZ2ozWUJ8NmZg08iIAxgFCX2lk4NaKQuFIU" />
     
@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Base & Variables (Cyber Mainframe with Liquid Glass) --- */
+        /* --- Base & Variables (Cyber Mainframe with Ultimate Liquid Glass) --- */
         :root {
             --bg-dark: #1E293B;     /* Full Body: Sleek Slate Gray */
             --bg-panel: #111827;    /* Deep slate-black for text preloader background */
@@ -29,10 +29,10 @@
             --accent-blue: #6366F1; /* Highlight: Electric Indigo / Cobalt Blue */
             --accent-glow: rgba(99, 102, 241, 0.4);
             
-            /* High-refraction Liquid Glass properties */
-            --glass-bg: rgba(255, 255, 255, 0.03); 
-            --glass-border: rgba(255, 255, 255, 0.08); 
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            /* Enhanced Refractive Liquid Glass Properties */
+            --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); 
+            --glass-border: rgba(255, 255, 255, 0.12); 
+            --glass-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.4), inset 0 1px 2px 0 rgba(255, 255, 255, 0.15);
         }
 
         * {
@@ -150,9 +150,9 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(30, 41, 59, 0.7); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(30, 41, 59, 0.5); 
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             z-index: 1000;
             border-bottom: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
@@ -274,13 +274,13 @@
             100% { transform: scale(1.03); opacity: 0.4; }
         }
 
-        /* --- Liquid Glass Cards & Skills --- */
+        /* --- Ultra Liquid Glass Panels --- */
         .about-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             padding: 3rem;
-            border-radius: 12px;
+            border-radius: 14px;
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
             text-align: center;
@@ -296,14 +296,14 @@
         }
 
         .skill-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 10px;
             border: 1px solid var(--glass-border);
-            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -312,10 +312,10 @@
         }
         
         .skill-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
             border-color: var(--accent-blue);
-            background: rgba(99, 102, 241, 0.03);
-            box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 48px 0 rgba(99, 102, 241, 0.25), inset 0 1px 2px 0 rgba(255, 255, 255, 0.3);
         }
 
         .skill-card h4 {
@@ -336,17 +336,17 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             padding: 2.5rem;
-            border-radius: 12px;
+            border-radius: 14px;
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
             border-color: var(--accent-blue);
-            background: rgba(99, 102, 241, 0.03);
-            box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 48px 0 rgba(99, 102, 241, 0.25), inset 0 1px 2px 0 rgba(255, 255, 255, 0.3);
         }
 
         .project-card h3 {
@@ -362,9 +362,10 @@
         }
 
         .tag {
-            background: rgba(99, 102, 241, 0.1);
+            background: rgba(99, 102, 241, 0.15);
             color: var(--text-light);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            backdrop-filter: blur(8px);
             padding: 0.4rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
@@ -455,7 +456,7 @@
                 right: -100%;
                 flex-direction: column;
                 background: rgba(30, 41, 59, 0.95);
-                backdrop-filter: blur(20px);
+                backdrop-filter: blur(24px);
                 width: 100%;
                 text-align: center;
                 padding: 2rem 0;
@@ -507,7 +508,7 @@
         <div class="container hero-container">
             <div class="avatar-wrapper reveal">
                 <div class="avatar-glow-circle"></div>
-                <img src="profile.jpg" alt="S. Srinivasa Sandeep Varma" class="hero-avatar">
+                <img src="sandeep.jpg" alt="S. Srinivasa Sandeep Varma" class="hero-avatar">
             </div>
             
             <div class="reveal" style="transition-delay: 0.2s;">
@@ -696,7 +697,7 @@
                         "value": 90,
                         "density": { "enable": true, "value_area": 800 }
                     },
-                    "color": { "value": "#6366F1" }, /* Custom-tuned to matching Indigo Accent */
+                    "color": { "value": "#6366F1" }, 
                     "shape": { "type": "circle" },
                     "opacity": {
                         "value": 0.5,
