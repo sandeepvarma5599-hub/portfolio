@@ -128,39 +128,6 @@
             font-size: 1.5rem;
         }
 
-        /* --- Buttons --- */
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--accent-blue);
-            color: #fff;
-            border: 1px solid var(--accent-blue);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent-blue);
-            border: 1px solid var(--accent-blue);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(59, 130, 246, 0.1);
-        }
-
         /* --- Hero Section --- */
         .hero-section {
             min-height: 100vh;
@@ -222,14 +189,9 @@
 
         .hero-subtitle {
             font-size: 1.1rem;
-            max-width: 700px;
+            max-width: 750px;
             margin-bottom: 1.5rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
+            color: var(--text-main);
         }
 
         @keyframes pulse {
@@ -251,7 +213,7 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Force single column for stacked full-width layout */
+            grid-template-columns: 1fr;
             gap: 1.5rem;
             margin-top: 3rem;
         }
@@ -408,13 +370,8 @@
             </div>
 
             <p class="hero-subtitle reveal" style="transition-delay: 0.4s;">
-                Passionate about shaping the future through technology. Merging a strong foundation in physical sciences with advanced certifications in AI, Data, and Cybersecurity to build innovative solutions.
+                A forward-thinking technologist integrating a strong foundation in physical sciences with advanced expertise in Artificial Intelligence, Cybersecurity, and Data Analytics. Focused on engineering secure, intelligent, and scalable digital solutions.
             </p>
-
-            <div class="hero-buttons reveal" style="transition-delay: 0.6s;">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Contact Me</a>
-            </div>
         </div>
     </section>
 
