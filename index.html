@@ -275,7 +275,7 @@
         }
 
         .tag {
-            background: rgba(16, 185, 129, 0.1); /* Adjusted slightly for the green */
+            background: rgba(16, 185, 129, 0.1);
             color: var(--accent-blue);
             padding: 0.4rem 1rem;
             border-radius: 20px;
@@ -285,15 +285,15 @@
 
         /* --- Minimal Contact Section --- */
         .minimal-contact {
-            background-color: var(--bg-panel); /* Matches the Cyberpunk theme */
-            padding: 6rem 0;
-            border-top: 1px solid var(--glass-border);
+            background-color: transparent; /* Blends perfectly with the main page */
+            padding: 6rem 0 8rem; /* Extra bottom padding since footer is gone */
+            border-top: none; /* No border for a seamless look */
         }
 
         .contact-flex-container {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center; /* Vertically aligns the left and right items perfectly */
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
@@ -311,7 +311,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 3.5rem;
             color: var(--text-light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem; /* Tightened spacing */
             font-weight: 500;
             letter-spacing: -1px;
         }
@@ -325,34 +325,17 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            margin-bottom: 1.5rem;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .email-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(243, 244, 246, 0.1); /* Subtle white glow */
-        }
-
-        .resume-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-light);
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .resume-link:hover {
-            color: var(--accent-blue);
+            box-shadow: 0 5px 15px rgba(243, 244, 246, 0.1);
         }
 
         .contact-right {
             display: flex;
             gap: 1.5rem;
-            margin-bottom: 0.5rem;
         }
 
         .social-icon {
@@ -372,14 +355,6 @@
             width: 28px;
             height: 28px;
             fill: currentColor;
-        }
-
-        .copyright {
-            text-align: center;
-            padding: 2rem 0;
-            background-color: var(--bg-panel);
-            color: var(--text-main);
-            font-size: 0.85rem;
         }
 
         /* Responsive Design */
@@ -531,10 +506,6 @@
             <div class="contact-left">
                 <h2>Get in touch</h2>
                 <a href="mailto:sandeepvarma5599@gmail.com" class="email-box">sandeepvarma5599@gmail.com</a>
-                
-                <a href="Resume-Sandeep-Varma.pdf" target="_blank" class="resume-link">
-                    💬 Resume-Sandeep-Varma.pdf
-                </a>
             </div>
 
             <div class="contact-right">
@@ -552,10 +523,6 @@
             </div>
         </div>
     </section>
-    
-    <div class="copyright">
-        <p>&copy; 2026 S. Srinivasa Sandeep Varma. All Rights Reserved.</p>
-    </div>
 
     <script>
         // 1. Mobile Menu Toggle
