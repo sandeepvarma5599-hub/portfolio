@@ -47,6 +47,54 @@
             overflow-x: hidden;
         }
 
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        /* --- System Boot Preloader --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #05020a;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10%;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.8s ease;
+        }
+
+        .terminal-line {
+            min-height: 1.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2rem;
+            background-color: var(--accent-blue);
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .preloader-hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
         /* --- Particle Background Layer --- */
         #particles-js {
             position: fixed;
@@ -54,7 +102,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            z-index: -1; /* Keeps it behind all your content */
+            z-index: -1;
         }
 
         h1, h2, h3, .logo {
@@ -411,7 +459,12 @@
         }
     </style>
 </head>
-<body>
+<body class="no-scroll">
+
+    <div id="preloader">
+        <div id="term-line-1" class="terminal-line"></div>
+        <div id="term-line-2" class="terminal-line"><span id="cursor" class="cursor"></span></div>
+    </div>
 
     <div id="particles-js"></div>
 
@@ -556,59 +609,106 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
+        // 0. Terminal Boot Animation Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const line1 = document.getElementById('term-line-1');
+            const line2 = document.getElementById('term-line-2');
+            const cursor = document.getElementById('cursor');
+            const preloader = document.getElementById('preloader');
+
+            function typeString(element, string, speed, callback) {
+                let i = 0;
+                element.innerHTML = "> ";
+                let timer = setInterval(() => {
+                    if (i < string.length) {
+                        element.innerHTML += string.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(timer);
+                        if(callback) setTimeout(callback, 400); // Slight pause between lines
+                    }
+                }, speed);
+            }
+
+            // Start animation slightly after page load
+            setTimeout(() => {
+                typeString(line1, "Initializing secure connection...", 40, () => {
+                    // Move cursor to line 2
+                    line2.insertBefore(cursor, null); 
+                    typeString(line2, "Access Granted.", 40, () => {
+                        line2.appendChild(cursor); // Keep cursor blinking at the end
+                        
+                        setTimeout(() => {
+                            // Trigger the slide up animation
+                            preloader.classList.add('preloader-hidden');
+                            // Allow the user to scroll again
+                            document.body.classList.remove('no-scroll');
+                            
+                            // Trigger the background particles to initialize after reveal
+                            initParticles();
+                            // Start Hero Typing effect
+                            setTimeout(typeHeroEffect, 800);
+                        }, 800);
+                    });
+                });
+            }, 500);
+        });
+
         // 1. Initialize Particles.js (Upward Drift Matrix Style)
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 90,
-                    "density": { "enable": true, "value_area": 800 }
-                },
-                "color": { "value": "#10B981" },
-                "shape": { "type": "circle" },
-                "opacity": {
-                    "value": 0.5,
-                    "random": true,
-                    "anim": {
+        function initParticles() {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 90,
+                        "density": { "enable": true, "value_area": 800 }
+                    },
+                    "color": { "value": "#10B981" },
+                    "shape": { "type": "circle" },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3.5,
+                        "random": true
+                    },
+                    "line_linked": {
+                        "enable": false 
+                    },
+                    "move": {
                         "enable": true,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
+                        "speed": 1.2,
+                        "direction": "top", 
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false
                     }
                 },
-                "size": {
-                    "value": 3.5,
-                    "random": true
-                },
-                "line_linked": {
-                    "enable": false /* No lines for the upward drift effect */
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 1.2,
-                    "direction": "top", /* Drifting upwards */
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": { "enable": true, "mode": "repulse" }, /* Gently dodge the mouse */
-                    "onclick": { "enable": true, "mode": "push" },
-                    "resize": true
-                },
-                "modes": {
-                    "repulse": {
-                        "distance": 100,
-                        "duration": 0.4
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": { "enable": true, "mode": "repulse" }, 
+                        "onclick": { "enable": true, "mode": "push" },
+                        "resize": true
                     },
-                    "push": { "particles_nb": 4 }
-                }
-            },
-            "retina_detect": true
-        });
+                    "modes": {
+                        "repulse": {
+                            "distance": 100,
+                            "duration": 0.4
+                        },
+                        "push": { "particles_nb": 4 }
+                    }
+                },
+                "retina_detect": true
+            });
+        }
 
         // 2. Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger');
@@ -625,7 +725,7 @@
             });
         });
 
-        // 3. Dynamic Typing Effect
+        // 3. Dynamic Typing Effect for Hero
         const typeWriterElement = document.getElementById('typewriter');
         const phrases = [
             "AI & Robotics Enthusiast",
@@ -638,7 +738,7 @@
         let charIndex = 0;
         let isDeleting = false;
 
-        function typeEffect() {
+        function typeHeroEffect() {
             const currentPhrase = phrases[phraseIndex];
             
             if (isDeleting) {
@@ -660,11 +760,8 @@
                 typingSpeed = 500; // Pause before typing new phrase
             }
 
-            setTimeout(typeEffect, typingSpeed);
+            setTimeout(typeHeroEffect, typingSpeed);
         }
-        
-        // Start typing effect
-        setTimeout(typeEffect, 1000);
 
         // 4. Scroll Reveal Animation using IntersectionObserver
         const revealElements = document.querySelectorAll('.reveal');
