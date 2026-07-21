@@ -556,34 +556,36 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // 1. Initialize Particles.js
+        // 1. Initialize Particles.js (Upward Drift Matrix Style)
         particlesJS("particles-js", {
             "particles": {
                 "number": {
-                    "value": 60,
+                    "value": 90,
                     "density": { "enable": true, "value_area": 800 }
                 },
                 "color": { "value": "#10B981" },
                 "shape": { "type": "circle" },
                 "opacity": {
-                    "value": 0.4,
-                    "random": false
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
                 },
                 "size": {
-                    "value": 3,
+                    "value": 3.5,
                     "random": true
                 },
                 "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#10B981",
-                    "opacity": 0.2,
-                    "width": 1
+                    "enable": false /* No lines for the upward drift effect */
                 },
                 "move": {
                     "enable": true,
-                    "speed": 1.5,
-                    "direction": "none",
+                    "speed": 1.2,
+                    "direction": "top", /* Drifting upwards */
                     "random": false,
                     "straight": false,
                     "out_mode": "out",
@@ -593,14 +595,14 @@
             "interactivity": {
                 "detect_on": "canvas",
                 "events": {
-                    "onhover": { "enable": true, "mode": "grab" },
+                    "onhover": { "enable": true, "mode": "repulse" }, /* Gently dodge the mouse */
                     "onclick": { "enable": true, "mode": "push" },
                     "resize": true
                 },
                 "modes": {
-                    "grab": {
-                        "distance": 140,
-                        "line_linked": { "opacity": 0.8 }
+                    "repulse": {
+                        "distance": 100,
+                        "duration": 0.4
                     },
                     "push": { "particles_nb": 4 }
                 }
