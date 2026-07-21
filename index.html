@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S. Srinivasa Sandeep Varma | Portfolio</title>
+    <title>Sirivuri Srinivasa Sandeep Varma | Portfolio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +18,8 @@
             --text-light: #f8fafc;
             --accent-blue: #3b82f6;
             --accent-glow: rgba(59, 130, 246, 0.5);
+            --glass-bg: rgba(17, 24, 39, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
         * {
@@ -47,25 +49,41 @@
         }
 
         .section {
-            padding: 5rem 0;
+            padding: 6rem 0;
         }
 
         .section-title {
             font-size: 2.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             text-align: center;
-            border-left: none !important; /* Hotfix applied */
         }
 
-        /* --- Navigation --- */
+        .section-title span {
+            color: var(--accent-blue);
+        }
+
+        /* --- Scroll Reveal Animation --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Glassmorphism Navigation --- */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(7, 10, 19, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(7, 10, 19, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .nav-container {
@@ -80,12 +98,10 @@
         .logo {
             font-size: 1.5rem;
             text-decoration: none;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
-        .logo span {
-            color: var(--accent-blue);
-        }
+        .logo span { color: var(--accent-blue); }
 
         .nav-links {
             display: flex;
@@ -100,8 +116,16 @@
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-blue);
+        .nav-links a:hover { color: var(--accent-blue); }
+
+        /* Mobile Menu Toggle */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
         }
 
         /* --- Buttons --- */
@@ -146,14 +170,11 @@
         }
 
         .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .avatar-wrapper {
@@ -164,6 +185,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 1rem;
         }
 
         .avatar-glow-circle {
@@ -183,18 +205,25 @@
             object-fit: cover;
             position: relative;
             z-index: 2;
-            background: #1e293b; /* Placeholder if image is missing */
+            background: #1e293b; 
         }
 
         .hero-title {
             font-size: 3rem;
-            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .typewriter-text {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            font-weight: 500;
+            min-height: 30px;
         }
 
         .hero-subtitle {
             font-size: 1.1rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-bottom: 1.5rem;
         }
 
         .hero-buttons {
@@ -208,28 +237,56 @@
             100% { transform: scale(1.05); opacity: 0.4; }
         }
 
-        /* --- About & Projects --- */
+        /* --- About & Skills --- */
         .about-card {
-            background: var(--bg-panel);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: var(--bg-panel);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .skill-card h4 {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Projects --- */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
         .project-card {
-            background: var(--bg-panel);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
             transition: transform 0.3s ease;
         }
 
@@ -243,17 +300,57 @@
             color: var(--accent-blue);
         }
 
-        /* --- Contact --- */
-        .contact-text {
-            margin-bottom: 2rem;
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* --- Contact Form --- */
+        .contact-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 4px;
+            color: var(--text-light);
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
         }
 
         /* --- Footer --- */
         .footer {
             background-color: #05080f;
             padding: 3rem 0 1.5rem;
-            color: var(--text-main);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--glass-border);
         }
 
         .footer-container {
@@ -268,28 +365,39 @@
 
         .footer-brand h3 { margin-bottom: 0.5rem; }
         .footer-brand span { color: var(--accent-blue); }
-        .footer-brand p { font-size: 0.9rem; max-width: 300px; }
         
         .footer-links a {
-            color: var(--text-light);
+            color: var(--text-main);
             text-decoration: none;
-            font-weight: 500;
+            margin: 0 10px;
             transition: color 0.3s ease;
         }
 
         .footer-links a:hover { color: var(--accent-blue); }
-        .footer-links .divider { margin: 0 15px; color: #334155; }
 
         .footer-bottom {
             text-align: center;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--glass-border);
             font-size: 0.85rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links { display: none; /* Add JS hamburger menu later if needed */ }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--bg-panel);
+                width: 100%;
+                text-align: center;
+                padding: 2rem 0;
+                transition: 0.3s ease;
+                border-bottom: 1px solid var(--glass-border);
+            }
+            .nav-links.active { right: 0; }
+            .hamburger { display: block; }
             .hero-title { font-size: 2rem; }
             .footer-container { flex-direction: column; gap: 1.5rem; text-align: center; }
         }
@@ -297,10 +405,11 @@
 </head>
 <body>
 
-    <nav class="navbar" aria-label="Main Navigation">
+    <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">SSV<span>.</span></a>
-            <ul class="nav-links">
+            <button class="hamburger" id="hamburger">☰</button>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -309,46 +418,83 @@
         </div>
     </nav>
 
-    <header id="home" class="hero-section">
-        <div class="hero-container">
-            <div class="avatar-wrapper">
+    <section id="home" class="hero-section">
+        <div class="container hero-container">
+            <div class="avatar-wrapper reveal">
                 <div class="avatar-glow-circle"></div>
-                <img src="profile.png" alt="S. Srinivasa Sandeep Varma" class="hero-avatar" loading="lazy">
+                <img src="/api/placeholder/150/150" alt="S. Srinivasa Sandeep Varma" class="hero-avatar">
             </div>
-            <div class="hero-text-content">
+            
+            <div class="reveal" style="transition-delay: 0.2s;">
                 <h1 class="hero-title">Sirivuri Srinivasa Sandeep Varma</h1>
-                <p class="hero-subtitle">Tech & Mechanical Enthusiast | Building Foundations in Mechatronics, AI and cybersecurity</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Work</a>
-                    <a href="#contact" class="btn btn-secondary">Contact</a>
-                </div>
+                <div class="typewriter-text" id="typewriter"></div>
             </div>
-        </div>
-    </header>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-card">
-                <p>Hello! I am Sirivuri Srinivasa Sandeep Varma, a developer and tech enthusiast passionate about exploring the intersection of hardware and software. I love learning about intelligent systems, modern coding methodologies, and finding creative solutions to technical challenges.</p>
+            <p class="hero-subtitle reveal" style="transition-delay: 0.4s;">
+                Passionate about shaping the future through technology. Merging a strong foundation in physical sciences with advanced certifications in AI, Data, and Cybersecurity to build innovative solutions.
+            </p>
+
+            <div class="hero-buttons reveal" style="transition-delay: 0.6s;">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="section bg-light">
+    <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-info">
-                        <h3>Project One</h3>
-                        <p>Modern web portal featuring optimized frontend layouts and styling configurations.</p>
+            <h2 class="section-title reveal">About <span>Me</span></h2>
+            
+            <div class="about-card reveal">
+                <p>
+                    I am a driven technologist who recently completed my 12th grade with a focus on Mathematics, Physics, and Chemistry (MPC). My academic background has equipped me with strong analytical and problem-solving skills, which I have aggressively expanded by diving into modern technology fields. I am deeply fascinated by how data, automation, and security intersect to create modern digital ecosystems.
+                </p>
+                
+                <div class="skills-grid">
+                    <div class="skill-card reveal">
+                        <h4>Artificial Intelligence</h4>
+                        <p>Google AI Certificate & Great Learning Robotics</p>
+                    </div>
+                    <div class="skill-card reveal">
+                        <h4>Data Analytics</h4>
+                        <p>Google Data Analytics Certificate</p>
+                    </div>
+                    <div class="skill-card reveal">
+                        <h4>Cybersecurity</h4>
+                        <p>Google Foundations of Cybersecurity</p>
+                    </div>
+                    <div class="skill-card reveal">
+                        <h4>Core Academics</h4>
+                        <p>12th MPC (Maths, Physics, Chemistry)</p>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-info">
-                        <h3>Project Two</h3>
-                        <p>Interactive web environment built with strict code standards.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title reveal">My <span>Work</span></h2>
+            
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <h3>Project Aasha</h3>
+                    <p>A comprehensive research and design project developed for the NSS Space Settlement Contest. The project focuses on conceptualizing sustainable and self-sufficient human habitats in space, integrating concepts of physics, engineering, and resource management.</p>
+                    <div class="project-tags">
+                        <span class="tag">Space Exploration</span>
+                        <span class="tag">Physics</span>
+                        <span class="tag">Research</span>
+                        <span class="tag">NSS Contest</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" style="transition-delay: 0.2s;">
+                    <h3>Data Analytics Project</h3>
+                    <p>Currently applying the skills learned in the Google Data Analytics certification to analyze real-world datasets, uncover trends, and create visualizations.</p>
+                    <div class="project-tags">
+                        <span class="tag">Data Analysis</span>
+                        <span class="tag">Visualization</span>
+                        <span class="tag">Coming Soon</span>
                     </div>
                 </div>
             </div>
@@ -356,10 +502,25 @@
     </section>
 
     <section id="contact" class="section">
-        <div class="container text-center">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="contact-text">Ready to build or coordinate next-gen platforms? Reach out via email.</p>
-            <a href="mailto:sandeepvarma5599@gmail.com" class="btn btn-primary">Send Email</a>
+        <div class="container">
+            <h2 class="section-title reveal">Get in <span>Touch</span></h2>
+            
+            <div class="contact-wrapper reveal">
+                <p style="text-align: center; margin-bottom: 2rem;">Interested in collaborating or have a question? Send me a message!</p>
+                
+                <form action="YOUR_FORM_ENDPOINT" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -367,26 +528,100 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3>SSV<span>.</span></h3>
-                <p>Engineering intelligent systems and secure foundations.</p>
+                <p>Sirivuri Srinivasa Sandeep Varma</p>
             </div>
-            
             <div class="footer-links">
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <span class="divider">|</span>
-                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Email</a>
             </div>
         </div>
-        
         <div class="footer-bottom">
-            <p>&copy; 2026 Sirivuri Srinivasa Sandeep Varma. All Systems Operational.</p>
+            <p>&copy; 2026 S. Srinivasa Sandeep Varma. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        // 1. Terminal Greeting for developers inspecting the console
-        console.log("%cSystem Initiated. Welcome to the portfolio of S. Srinivasa Sandeep Varma.", "color: #3b82f6; font-size: 14px; font-weight: bold;");
+        // 1. Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
 
-        // 2. Smooth scrolling offset for fixed navbar
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // 2. Dynamic Typing Effect
+        const typeWriterElement = document.getElementById('typewriter');
+        const phrases = [
+            "AI & Robotics Enthusiast",
+            "Certified Data Analyst",
+            "Cybersecurity Learner",
+            "Space Settlement Innovator"
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typeWriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typeWriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typingSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typingSpeed = 2000; // Pause at end of phrase
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 500; // Pause before typing new phrase
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+        
+        // Start typing effect
+        setTimeout(typeEffect, 1000);
+
+        // 3. Scroll Reveal Animation using IntersectionObserver
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+
+        // 4. Smooth scrolling offset for fixed navbar
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
