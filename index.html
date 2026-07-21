@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Sirivuri Srinivasa Sandeep Varma | Portfolio</title>
+    <meta name="description" content="Portfolio of Sirivuri Srinivasa Sandeep Varma, a technologist specializing in Artificial Intelligence, Cybersecurity, and Data Analytics.">
+    <meta name="keywords" content="Sirivuri Srinivasa Sandeep Varma, Sandeep Varma portfolio, AI, Cybersecurity, Data Analytics, Software Engineer">
+    <meta name="author" content="Sirivuri Srinivasa Sandeep Varma">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -285,15 +289,15 @@
 
         /* --- Minimal Contact Section --- */
         .minimal-contact {
-            background-color: transparent; /* Blends perfectly with the main page */
-            padding: 6rem 0 8rem; /* Extra bottom padding since footer is gone */
-            border-top: none; /* No border for a seamless look */
+            background-color: transparent; 
+            padding: 6rem 0 8rem; 
+            border-top: none; 
         }
 
         .contact-flex-container {
             display: flex;
             justify-content: space-between;
-            align-items: center; /* Vertically aligns the left and right items perfectly */
+            align-items: center; 
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
@@ -311,7 +315,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 3.5rem;
             color: var(--text-light);
-            margin-bottom: 1rem; /* Tightened spacing */
+            margin-bottom: 1rem;
             font-weight: 500;
             letter-spacing: -1px;
         }
@@ -564,64 +568,4 @@
                 charIndex++;
             }
 
-            let typingSpeed = isDeleting ? 50 : 100;
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typingSpeed = 2000; // Pause at end of phrase
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typingSpeed = 500; // Pause before typing new phrase
-            }
-
-            setTimeout(typeEffect, typingSpeed);
-        }
-        
-        // Start typing effect
-        setTimeout(typeEffect, 1000);
-
-        // 3. Scroll Reveal Animation using IntersectionObserver
-        const revealElements = document.querySelectorAll('.reveal');
-
-        const revealOptions = {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Only animate once
-                }
-            });
-        }, revealOptions);
-
-        revealElements.forEach(el => {
-            revealOnScroll.observe(el);
-        });
-
-        // 4. Smooth scrolling offset for fixed navbar
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - navbarHeight,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+            let typingSpeed = isDeleting ? 50 : 1
