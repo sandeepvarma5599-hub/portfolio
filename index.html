@@ -10,15 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Base & Variables --- */
+        /* --- Base & Variables (Option 3: Cyberpunk / AI Hacker) --- */
         :root {
-            --bg-dark: #121212; /* Slightly adjusted to match the darker, minimalist vibe */
-            --bg-panel: #1a1a1a;
-            --text-main: #94a3b8;
-            --text-light: #f8fafc;
-            --accent-blue: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.5);
-            --glass-bg: rgba(26, 26, 26, 0.6);
+            --bg-dark: #090514;     /* Midnight Purple/Black */
+            --bg-panel: #171026;    /* Slightly lighter purple/black */
+            --text-main: #A78BFA;   /* Soft lavender text */
+            --text-light: #F3F4F6;  /* White text for headings */
+            --accent-blue: #10B981; /* Neon Emerald Green */
+            --accent-glow: rgba(16, 185, 129, 0.5);
+            --glass-bg: rgba(23, 16, 38, 0.6);
             --glass-border: rgba(255, 255, 255, 0.08);
         }
 
@@ -79,7 +79,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(18, 18, 18, 0.8);
+            background: rgba(9, 5, 20, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
@@ -171,7 +171,7 @@
             object-fit: cover;
             position: relative;
             z-index: 2;
-            background: #1e293b; 
+            background: var(--bg-panel); 
         }
 
         .hero-title {
@@ -275,7 +275,7 @@
         }
 
         .tag {
-            background: rgba(59, 130, 246, 0.1);
+            background: rgba(16, 185, 129, 0.1); /* Adjusted slightly for the green */
             color: var(--accent-blue);
             padding: 0.4rem 1rem;
             border-radius: 20px;
@@ -285,7 +285,7 @@
 
         /* --- Minimal Contact Section --- */
         .minimal-contact {
-            background-color: #151515; /* Distinct dark background for footer area */
+            background-color: var(--bg-panel); /* Matches the Cyberpunk theme */
             padding: 6rem 0;
             border-top: 1px solid var(--glass-border);
         }
@@ -308,7 +308,7 @@
         }
 
         .contact-left h2 {
-            font-family: 'Space Grotesk', sans-serif; /* Clean font matching the image */
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 3.5rem;
             color: var(--text-light);
             margin-bottom: 1.5rem;
@@ -318,7 +318,7 @@
 
         .email-box {
             display: inline-block;
-            background-color: #ffffff;
+            background-color: var(--text-light);
             color: #000000;
             padding: 0.8rem 1.5rem;
             border-radius: 6px;
@@ -331,7 +331,7 @@
 
         .email-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(243, 244, 246, 0.1); /* Subtle white glow */
         }
 
         .resume-link {
@@ -352,7 +352,7 @@
         .contact-right {
             display: flex;
             gap: 1.5rem;
-            margin-bottom: 0.5rem; /* Aligns visually with the resume link */
+            margin-bottom: 0.5rem;
         }
 
         .social-icon {
@@ -377,8 +377,8 @@
         .copyright {
             text-align: center;
             padding: 2rem 0;
-            background-color: #151515;
-            color: #64748b;
+            background-color: var(--bg-panel);
+            color: var(--text-main);
             font-size: 0.85rem;
         }
 
