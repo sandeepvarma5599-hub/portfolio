@@ -95,16 +95,28 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1.2rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
+        /* Integrated Image Profile Logo Container */
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
             font-size: 1.5rem;
             text-decoration: none;
             letter-spacing: 1px;
+        }
+
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid var(--accent-blue);
         }
 
         .logo span { color: var(--accent-blue); }
@@ -149,12 +161,11 @@
             gap: 1.5rem;
         }
 
-        /* Modern Square Avatar Layout Setup */
         .avatar-wrapper {
             position: relative;
             width: 160px;
             height: 160px;
-            border-radius: 16px; /* Smooth rounded square corners */
+            border-radius: 16px; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -165,7 +176,7 @@
             position: absolute;
             width: 106%;
             height: 106%;
-            border-radius: 18px; /* Slightly higher radius for the outer frame wrapper */
+            border-radius: 18px; 
             border: 2px solid var(--accent-blue);
             box-shadow: 0 0 20px var(--accent-glow);
             animation: pulse 2s infinite alternate;
@@ -174,7 +185,7 @@
         .hero-avatar {
             width: 100%;
             height: 100%;
-            border-radius: 16px; /* Smooth rounded square profile frame */
+            border-radius: 16px; 
             object-fit: cover;
             position: relative;
             z-index: 2;
@@ -397,7 +408,10 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">SSV<span>.</span></a>
+            <a href="#" class="logo">
+                <img src="profile.jpg" alt="Logo Avatar" class="logo-img">
+                SSV<span>.</span>
+            </a>
             <button class="hamburger" id="hamburger">☰</button>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -605,7 +619,7 @@
                     observer.unobserve(entry.target); // Only animate once
                 }
             });
-        }, revealOptions);
+        }, revealOnScroll);
 
         revealElements.forEach(el => {
             revealOnScroll.observe(el);
