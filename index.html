@@ -54,7 +54,7 @@
             overflow: hidden;
         }
 
-        /* --- Neural Pulse & Split Screen Preloader --- */
+        /* --- Fast Cinematic Preloader --- */
         #preloader-split {
             position: fixed;
             top: 0;
@@ -71,20 +71,46 @@
             width: 100%;
             height: 50vh;
             background-color: var(--bg-panel);
-            transition: transform 1.2s cubic-bezier(0.86, 0, 0.07, 1);
+            transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1);
         }
 
         .top-panel {
             transform-origin: top;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.15);
         }
 
         .bottom-panel {
             transform-origin: bottom;
-            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            border-top: 1px solid rgba(99, 102, 241, 0.15);
         }
 
-        /* The glowing pulse line */
+        /* Premium Name Reveal */
+        .preloader-name {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            opacity: 0;
+            z-index: 10001;
+            letter-spacing: 2px;
+            animation: nameReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes nameReveal {
+            0% { opacity: 0; letter-spacing: 1px; filter: blur(4px); }
+            40% { opacity: 1; filter: blur(0px); }
+            80% { opacity: 1; letter-spacing: 4px; }
+            100% { opacity: 0; letter-spacing: 5px; }
+        }
+
+        /* Glowing Pulse Line */
         .pulse-line-container {
             position: absolute;
             top: 50%;
@@ -102,18 +128,18 @@
             width: 0%;
             height: 2px;
             background-color: var(--text-light);
-            box-shadow: 0 0 15px var(--accent-blue), 0 0 30px var(--accent-blue), 0 0 45px var(--accent-blue);
-            animation: drawPulse 1.5s ease-in-out forwards;
+            box-shadow: 0 0 15px var(--accent-blue), 0 0 30px var(--accent-blue);
+            animation: drawPulse 0.6s ease-in-out 0.6s forwards; /* Starts right after name fades */
         }
 
         @keyframes drawPulse {
             0% { width: 0%; opacity: 0; }
-            30% { opacity: 1; }
+            20% { opacity: 1; }
             80% { width: 100%; opacity: 1; }
             100% { width: 100%; opacity: 0; } 
         }
 
-        /* Trigger classes for JS */
+        /* Execution States */
         .preloader-loaded .top-panel {
             transform: translateY(-100%);
         }
@@ -511,6 +537,7 @@
 <body class="no-scroll">
 
     <div id="preloader-split">
+        <div class="preloader-name">Sirivuri Srinivasa Sandeep Varma</div>
         <div class="split-panel top-panel"></div>
         <div class="split-panel bottom-panel"></div>
         <div class="pulse-line-container">
@@ -675,19 +702,19 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // 0. Split Screen Door Logic
+        // 0. High-Speed Sequence Management (< 2 Seconds Total)
         document.addEventListener('DOMContentLoaded', () => {
             const preloader = document.getElementById('preloader-split');
 
-            // The pulse animation takes 1.5s to finish, wait slightly longer to split doors
+            // 1.2s matches the exact end of the line pulse animation sequence
             setTimeout(() => {
-                // Trigger the split animation
+                // Initiate split panel movement (Takes exactly 0.6 seconds to finish)
                 preloader.classList.add('preloader-loaded');
                 
-                // Allow the user to scroll again
+                // Allow user interaction and viewport movement
                 document.body.classList.remove('no-scroll');
                 
-                // Initialize particle background and reveal elements slightly after doors open
+                // Fire main layout features right while the panels lift
                 setTimeout(() => {
                     initParticles();
                     
@@ -695,17 +722,17 @@
                         el.classList.add('active');
                     });
 
-                    // Start Hero Typing effect
-                    setTimeout(typeHeroEffect, 600);
+                    // Start text generation on the hero banner
+                    setTimeout(typeHeroEffect, 200);
                     
-                    // Hide completely after transition to free up DOM layers
+                    // Delete preloader entirely from layout tree to optimize resources
                     setTimeout(() => {
                         preloader.style.display = 'none';
-                    }, 1200);
+                    }, 600);
 
-                }, 400); 
+                }, 100); 
 
-            }, 1600); // Wait for the drawPulse animation
+            }, 1200); 
         });
 
         // 1. Initialize Particles.js
