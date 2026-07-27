@@ -54,8 +54,8 @@
             overflow: hidden;
         }
 
-        /* --- Dynamic Code Compiler Preloader --- */
-        #preloader-brackets {
+        /* --- Option 3: Neural Pulse & Split Screen Preloader --- */
+        #preloader-split {
             position: fixed;
             top: 0;
             left: 0;
@@ -63,92 +63,61 @@
             height: 100vh;
             z-index: 9999;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             pointer-events: all;
-            overflow: hidden;
         }
 
-        /* Horizontal Split Panels (Background) */
-        .panel-left, .panel-right {
+        /* The vertical split doors */
+        .split-panel {
+            width: 100%;
+            height: 50vh;
+            background-color: var(--bg-panel);
+            transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .top-panel {
+            transform-origin: top;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        .bottom-panel {
+            transform-origin: bottom;
+            border-top: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        /* The glowing neural pulse line */
+        .pulse-line-container {
             position: absolute;
-            top: 0;
-            height: 100vh;
-            width: 50vw;
-            background: var(--bg-panel);
-            transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 10000;
         }
 
-        .panel-left {
-            left: 0;
-            border-right: 1px solid rgba(99, 102, 241, 0.1);
+        .pulse-line {
+            width: 0%;
+            height: 2px;
+            background-color: var(--text-light);
+            box-shadow: 0 0 15px var(--accent-blue), 0 0 30px var(--accent-blue), 0 0 45px var(--accent-blue);
+            animation: drawPulse 1.1s ease-in-out forwards;
         }
 
-        .panel-right {
-            right: 0;
-            border-left: 1px solid rgba(99, 102, 241, 0.1);
+        @keyframes drawPulse {
+            0% { width: 0%; opacity: 0; }
+            20% { opacity: 1; }
+            85% { width: 100%; opacity: 1; }
+            100% { width: 100%; opacity: 0; } 
         }
 
-        /* Flex Container to perfectly frame Name with Arrows */
-        .preloader-content {
-            position: relative;
-            z-index: 10001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-            padding: 0 20px;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        /* Blue Arrows (Code Brackets) */
-        .bracket {
-            font-family: 'Space Grotesk', monospace;
-            font-size: 3.5rem;
-            color: var(--accent-blue);
-            font-weight: 300;
-            text-shadow: 0 0 15px var(--accent-glow);
-            transition: text-shadow 0.3s ease, transform 0.3s ease;
-        }
-
-        /* Cinematic Name Reveal */
-        .preloader-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            color: var(--text-light);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            text-align: center;
-            animation: focusIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            transition: letter-spacing 0.3s ease;
-        }
-
-        @keyframes focusIn {
-            0% { filter: blur(12px); opacity: 0; transform: scale(0.9); }
-            100% { filter: blur(0px); opacity: 1; transform: scale(1); }
-        }
-
-        /* Animation Execution States */
-        .preloader-closing .preloader-content {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        .preloader-closing .preloader-name {
-            letter-spacing: 10px;
-        }
-
-        .preloader-closing .bracket {
-            text-shadow: 0 0 40px var(--accent-blue), 0 0 20px #ffffff;
-            font-weight: 600;
-            transform: scale(1.1);
-        }
-
-        .preloader-open .panel-left { transform: translateX(-100%); }
-        .preloader-open .panel-right { transform: translateX(100%); }
-        .preloader-open { pointer-events: none; }
+        /* Trigger classes to open doors */
+        .preloader-loaded .top-panel { transform: translateY(-100%); }
+        .preloader-loaded .bottom-panel { transform: translateY(100%); }
+        .preloader-loaded { pointer-events: none; }
 
         /* --- Particle Background Layer --- */
         #particles-js {
@@ -520,11 +489,6 @@
             .hero-title { font-size: 2rem; }
             .skill-card h4 { font-size: 1.25rem; }
             
-            /* Responsive adjustments for perfectly framed arrows */
-            .preloader-name { font-size: 0.9rem; letter-spacing: 2px; }
-            .bracket { font-size: 2.5rem; }
-            .preloader-content { gap: 10px; }
-
             .contact-flex-container {
                 flex-direction: column;
                 align-items: flex-start;
@@ -539,14 +503,11 @@
 </head>
 <body class="no-scroll">
 
-    <div id="preloader-brackets">
-        <div class="panel-left"></div>
-        <div class="panel-right"></div>
-        
-        <div class="preloader-content">
-            <span class="bracket">&lt;</span>
-            <div class="preloader-name">Sirivuri Srinivasa Sandeep Varma</div>
-            <span class="bracket">/&gt;</span>
+    <div id="preloader-split">
+        <div class="split-panel top-panel"></div>
+        <div class="split-panel bottom-panel"></div>
+        <div class="pulse-line-container">
+            <div class="pulse-line"></div>
         </div>
     </div>
 
@@ -707,76 +668,42 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // High-Speed Cinematic Blue Arrow Animation Sequence (< 2.0 Seconds)
+        // Option 3 Sequence Management (< 2 Seconds Total)
         document.addEventListener('DOMContentLoaded', () => {
-            const preloader = document.getElementById('preloader-brackets');
+            const preloader = document.getElementById('preloader-split');
 
-            // Wait 1.1s for name to perfectly focus and hold
+            // Wait until pulse draws (1.1s)
             setTimeout(() => {
+                preloader.classList.add('preloader-loaded');
+                document.body.classList.remove('no-scroll');
                 
-                // Fade out name, intensely glow arrows
-                preloader.classList.add('preloader-closing');
-                
-                // Wait briefly for name and arrows to fade/scale
                 setTimeout(() => {
+                    initParticles();
+                    document.querySelectorAll('#home .reveal').forEach(el => el.classList.add('active'));
+                    setTimeout(typeHeroEffect, 200);
                     
-                    // Trigger horizontal panel split (sliding apart)
-                    preloader.classList.add('preloader-open');
-                    document.body.classList.remove('no-scroll');
-                    
-                    // Trigger inner page entrance animations immediately
                     setTimeout(() => {
-                        initParticles();
-                        document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
-                        setTimeout(typeHeroEffect, 200);
-                        
-                        // Destroy preloader overlay to secure layout performance
-                        setTimeout(() => {
-                            preloader.style.display = 'none';
-                        }, 800);
-                    }, 100); 
-
-                }, 350); 
-
+                        preloader.style.display = 'none';
+                    }, 600);
+                }, 100);
             }, 1100); 
         });
 
-        // Initialize Particles.js
+        // Particles Configuration
         function initParticles() {
             particlesJS("particles-js", {
                 "particles": {
-                    "number": {
-                        "value": 90,
-                        "density": { "enable": true, "value_area": 800 }
-                    },
+                    "number": { "value": 90, "density": { "enable": true, "value_area": 800 } },
                     "color": { "value": "#6366F1" }, 
                     "shape": { "type": "circle" },
                     "opacity": {
                         "value": 0.5,
                         "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
+                        "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false }
                     },
-                    "size": {
-                        "value": 3.5,
-                        "random": true
-                    },
-                    "line_linked": {
-                        "enable": false 
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 1.2,
-                        "direction": "top", 
-                        "random": false,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false
-                    }
+                    "size": { "value": 3.5, "random": true },
+                    "line_linked": { "enable": false },
+                    "move": { "enable": true, "speed": 1.2, "direction": "top", "random": false, "straight": false, "out_mode": "out", "bounce": false }
                 },
                 "interactivity": {
                     "detect_on": "canvas",
@@ -785,49 +712,25 @@
                         "onclick": { "enable": true, "mode": "push" },
                         "resize": true
                     },
-                    "modes": {
-                        "repulse": {
-                            "distance": 100,
-                            "duration": 0.4
-                        },
-                        "push": { "particles_nb": 4 }
-                    }
+                    "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
                 },
                 "retina_detect": true
             });
         }
 
-        // Mobile Menu Toggle
+        // Mobile Navbar Control
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+        document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); }); });
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Dynamic Typing Effect
+        // Typing Loop Architecture
         const typeWriterElement = document.getElementById('typewriter');
-        const phrases = [
-            "Tech Enthusiast",
-            "AI & Robotics Enthusiast",
-            "Certified Data Analyst",
-            "Cybersecurity Learner",
-            "Space Settlement Innovator"
-        ];
-        
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+        const phrases = ["Tech Enthusiast", "AI & Robotics Enthusiast", "Certified Data Analyst", "Cybersecurity Learner", "Space Settlement Innovator"];
+        let phraseIndex = 0, charIndex = 0, isDeleting = false;
 
         function typeHeroEffect() {
             const currentPhrase = phrases[phraseIndex];
-            
             if (isDeleting) {
                 typeWriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
@@ -835,62 +738,32 @@
                 typeWriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
                 charIndex++;
             }
-
             let typingSpeed = isDeleting ? 50 : 100;
-
             if (!isDeleting && charIndex === currentPhrase.length) {
-                typingSpeed = 2000; 
-                isDeleting = true;
+                typingSpeed = 2000; isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typingSpeed = 500; 
+                isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typingSpeed = 500; 
             }
-
             setTimeout(typeHeroEffect, typingSpeed);
         }
 
-        // Scroll Reveal Animation 
+        // Viewport Intersection Watcher
         const revealElements = document.querySelectorAll('.reveal');
-
-        const revealOptions = {
-            threshold: 0.05, 
-            rootMargin: "0px 0px -20px 0px"
-        };
-
+        const revealOptions = { threshold: 0.05, rootMargin: "0px 0px -20px 0px" };
         const revealOnScroll = new IntersectionObserver(function(entries, observer) {
             entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); 
-                }
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); 
             });
         }, revealOptions);
+        revealElements.forEach(el => { revealOnScroll.observe(el); });
 
-        revealElements.forEach(el => {
-            revealOnScroll.observe(el);
-        });
-
-        // Smooth scrolling offset for fixed navbar
+        // Smooth Scroll Controller
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if(targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
                 const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - navbarHeight,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
