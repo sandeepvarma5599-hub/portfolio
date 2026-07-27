@@ -17,13 +17,13 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- Base & Variables (Cyber Mainframe with Ultimate Liquid Glass) --- */
         :root {
             --bg-dark: #0F172A;     /* Full Body: Deeper Dark Slate */
-            --bg-panel: #020617;    /* Deepest slate-black for the split doors */
+            --bg-panel: #020617;    /* Deepest slate-black for the loading container */
             --text-main: #E2E8F0;   /* Brighter text contrast for high readability */
             --text-muted: #94A3B8;  /* Muted slate blue for secondary elements */
             --text-light: #F8FAFC;  /* Bright off-white for strong headers */
@@ -55,69 +55,69 @@
             overflow: hidden;
         }
 
-        /* --- Option 3: Neural Pulse & Split Screen Preloader Layout --- */
-        #preloader-split {
+        /* --- Premium Professional Name Decrypt Preloader --- */
+        #preloader-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            pointer-events: all;
-        }
-
-        .split-panel {
-            width: 100%;
-            height: 50vh;
             background-color: var(--bg-panel);
-            transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1);
-        }
-
-        .top-panel {
-            transform-origin: top;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.15);
-        }
-
-        .bottom-panel {
-            transform-origin: bottom;
-            border-top: 1px solid rgba(99, 102, 241, 0.15);
-        }
-
-        /* The horizontal neural pulse line */
-        .pulse-line-container {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            transform: translateY(-50%);
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
+            pointer-events: all;
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
         }
 
-        .pulse-line {
-            width: 0%;
-            height: 2px;
-            background-color: var(--text-light);
-            box-shadow: 0 0 15px var(--accent-blue), 0 0 30px var(--accent-blue), 0 0 45px var(--accent-blue);
-            animation: drawPulse 1.1s ease-in-out forwards;
+        /* Ambient glowing refractive pulse background */
+        .canvas-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.09) 0%, rgba(15, 23, 42, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(40px);
+            animation: pulseGlow 2s infinite alternate ease-in-out;
         }
 
-        @keyframes drawPulse {
-            0% { width: 0%; opacity: 0; }
-            20% { opacity: 1; }
-            85% { width: 100%; opacity: 1; }
-            100% { width: 100%; opacity: 0; } 
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
         }
 
-        /* Opening States triggered via JavaScript */
-        .preloader-loaded .top-panel { transform: translateY(-100%); }
-        .preloader-loaded .bottom-panel { transform: translateY(100%); }
-        .preloader-loaded { pointer-events: none; }
+        /* Cryptographic Name Display Container */
+        .preloader-name-display {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-align: center;
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            z-index: 10001;
+            text-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+            transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.4s ease, letter-spacing 0.5s ease;
+        }
+
+        /* Exit Trigger States */
+        .preloader-hidden {
+            opacity: 0 !important;
+            filter: blur(10px);
+            pointer-events: none !important;
+        }
+
+        .preloader-hidden .preloader-name-display {
+            transform: scale(1.05);
+            letter-spacing: 6px;
+            opacity: 0;
+        }
 
         /* --- Background Particles --- */
         #particles-js {
@@ -439,7 +439,7 @@
         }
 
         .tag {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(99, 102, 241, 0.05);
             color: var(--text-light);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 0.4rem 1rem;
@@ -535,12 +535,9 @@
 </head>
 <body class="no-scroll">
 
-    <div id="preloader-split">
-        <div class="split-panel top-panel"></div>
-        <div class="split-panel bottom-panel"></div>
-        <div class="pulse-line-container">
-            <div class="pulse-line"></div>
-        </div>
+    <div id="preloader-canvas">
+        <div class="canvas-glow"></div>
+        <div id="preloader-name" class="preloader-name-display"></div>
     </div>
 
     <div id="particles-js"></div>
@@ -730,25 +727,44 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // Option 3 High-Speed Sequence Management (< 2 Seconds Total)
+        //snappy high-performance typographic matrix text reveal sequence (<1.8s total)
         document.addEventListener('DOMContentLoaded', () => {
-            const preloader = document.getElementById('preloader-split');
-
-            // 1.1s matches the exact end of the neural center line pulse layout draw
-            setTimeout(() => {
-                preloader.classList.add('preloader-loaded');
-                document.body.classList.remove('no-scroll');
+            const preloader = document.getElementById('preloader-canvas');
+            const nameTarget = document.getElementById('preloader-name');
+            
+            const fullName = "Sirivuri Srinivasa Sandeep Varma";
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+=?";
+            let iterations = 0;
+            
+            let decryptInterval = setInterval(() => {
+                nameTarget.innerText = fullName.split("").map((letter, index) => {
+                    if (letter === " ") return " ";
+                    if (index < iterations) return fullName[index];
+                    return chars[Math.floor(Math.random() * chars.length)];
+                }).join("");
                 
-                setTimeout(() => {
-                    initParticles();
-                    document.querySelectorAll('#home .reveal').forEach(el => el.classList.add('active'));
-                    setTimeout(typeHeroEffect, 200);
+                if (iterations >= fullName.length) {
+                    clearInterval(decryptInterval);
                     
+                    // Trigger seamless canvas cross-fade transition
                     setTimeout(() => {
-                        preloader.style.display = 'none';
-                    }, 600);
-                }, 100);
-            }, 1100); 
+                        preloader.classList.add('preloader-hidden');
+                        document.body.classList.remove('no-scroll');
+                        
+                        setTimeout(() => {
+                            initParticles();
+                            document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+                            setTimeout(typeHeroEffect, 200);
+                            
+                            // fully unmount to balance runtime layouts
+                            setTimeout(() => {
+                                preloader.style.display = 'none';
+                            }, 600);
+                        }, 100);
+                    }, 250);
+                }
+                iterations += 2; // snapping factor: locks in two characters per loop cycle execution 
+            }, 35); 
         });
 
         // Particles Configuration
@@ -788,50 +804,4 @@
 
         // Typing Loop Architecture
         const typeWriterElement = document.getElementById('typewriter');
-        const phrases = ["Tech Enthusiast", "AI & Robotics Enthusiast", "Certified Data Analyst", "Cybersecurity Learner", "Space Settlement Innovator"];
-        let phraseIndex = 0, charIndex = 0, isDeleting = false;
-
-        function typeHeroEffect() {
-            const currentPhrase = phrases[phraseIndex];
-            if (isDeleting) {
-                typeWriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typeWriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-            let typingSpeed = isDeleting ? 50 : 100;
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typingSpeed = 2000; isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typingSpeed = 500; 
-            }
-            setTimeout(typeHeroEffect, typingSpeed);
-        }
-
-        // Viewport Intersection Watcher
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOptions = { threshold: 0.05, rootMargin: "0px 0px -20px 0px" };
-        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target); 
-            });
-        }, revealOptions);
-        revealElements.forEach(el => { revealOnScroll.observe(el); });
-
-        // Smooth Scroll Controller
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                if (targetElement) { window.scrollTo({ top: targetElement.offsetTop - navbarHeight, behavior: 'smooth' }); }
-            });
-        });
-    </script>
-</body>
-</html>
+        const phrases =
