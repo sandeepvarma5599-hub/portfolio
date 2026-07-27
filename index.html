@@ -17,14 +17,14 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
     
     <style>
         /* --- Base & Variables (Cyber Mainframe with Ultimate Liquid Glass) --- */
         :root {
             --bg-dark: #0F172A;     /* Full Body: Deeper Dark Slate */
             --bg-panel: #020617;    /* Deepest slate-black for the split doors */
-            --text-main: #E2E8F0;   /* FIXED OPTION 4: Optimized brighter text contrast for high readability */
+            --text-main: #E2E8F0;   /* Brighter text contrast for high readability */
             --text-muted: #94A3B8;  /* Muted slate blue for secondary elements */
             --text-light: #F8FAFC;  /* Bright off-white for strong headers */
             --accent-blue: #6366F1; /* Highlight: Electric Indigo / Cobalt Blue */
@@ -44,18 +44,19 @@
         }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Inter', sans-serif; 
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            letter-spacing: -0.01em; 
         }
 
         body.no-scroll {
             overflow: hidden;
         }
 
-        /* --- Fast Cinematic Preloader --- */
+        /* --- Fast Cinematic Cryptographic Preloader --- */
         #preloader-split {
             position: fixed;
             top: 0;
@@ -85,30 +86,29 @@
             border-top: 1px solid rgba(99, 102, 241, 0.15);
         }
 
-        /* Premium Name Reveal */
+        /* Option 1: Cryptographic Decrypt Container */
         .preloader-name {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-light);
             text-transform: uppercase;
             text-align: center;
             width: 90%;
-            max-width: 800px;
-            opacity: 0;
+            max-width: 850px;
             z-index: 10001;
-            letter-spacing: 2px;
-            animation: nameReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+            transition: opacity 0.3s ease;
         }
 
-        @keyframes nameReveal {
-            0% { opacity: 0; letter-spacing: 1px; filter: blur(4px); }
-            40% { opacity: 1; filter: blur(0px); }
-            80% { opacity: 1; letter-spacing: 4px; }
-            100% { opacity: 0; letter-spacing: 5px; }
+        .preloader-name.fade-out {
+            opacity: 0;
+            letter-spacing: 5px;
+            filter: blur(4px);
         }
 
         /* Glowing Pulse Line */
@@ -130,7 +130,10 @@
             height: 2px;
             background-color: var(--text-light);
             box-shadow: 0 0 15px var(--accent-blue), 0 0 30px var(--accent-blue);
-            animation: drawPulse 0.6s ease-in-out 0.6s forwards; 
+        }
+
+        .pulse-line.active {
+            animation: drawPulse 0.5s ease-in-out forwards;
         }
 
         @keyframes drawPulse {
@@ -310,9 +313,10 @@
         }
 
         .typewriter-text {
+            font-family: 'Space Grotesk', Courier, monospace; 
             color: var(--accent-blue);
             font-size: 1.5rem;
-            font-weight: 500;
+            font-weight: 600;
             min-height: 30px;
         }
 
@@ -452,12 +456,12 @@
         }
 
         .contact-left h2 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 3.5rem;
             color: var(--text-light);
             margin-bottom: 1rem;
-            font-weight: 500;
-            letter-spacing: -1px;
+            font-weight: 600;
+            letter-spacing: -2px;
         }
 
         .email-box {
@@ -538,11 +542,11 @@
 <body class="no-scroll">
 
     <div id="preloader-split">
-        <div class="preloader-name">Sirivuri Srinivasa Sandeep Varma</div>
+        <div id="decrypt-target" class="preloader-name"></div>
         <div class="split-panel top-panel"></div>
         <div class="split-panel bottom-panel"></div>
         <div class="pulse-line-container">
-            <div class="pulse-line"></div>
+            <div id="pulse-target" class="pulse-line"></div>
         </div>
     </div>
 
@@ -703,30 +707,52 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // 0. High-Speed Sequence Management (< 2 Seconds Total)
+        // 0. High-Speed Cryptographic Decrypt Preloader Sequence (< 2 Seconds Total)
         document.addEventListener('DOMContentLoaded', () => {
             const preloader = document.getElementById('preloader-split');
-
-            setTimeout(() => {
-                preloader.classList.add('preloader-loaded');
-                document.body.classList.remove('no-scroll');
+            const nameTarget = document.getElementById('decrypt-target');
+            const pulseTarget = document.getElementById('pulse-target');
+            
+            const fullName = "Sirivuri Srinivasa Sandeep Varma";
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+            let iterations = 0;
+            
+            // Fast matrix text initialization
+            let decryptInterval = setInterval(() => {
+                nameTarget.innerText = fullName.split("").map((letter, index) => {
+                    if(letter === " ") return " ";
+                    if(index < iterations) return fullName[index];
+                    return chars[Math.floor(Math.random() * chars.length)];
+                }).join("");
                 
-                setTimeout(() => {
-                    initParticles();
+                if(iterations >= fullName.length) {
+                    clearInterval(decryptInterval);
                     
-                    document.querySelectorAll('#home .reveal').forEach(el => {
-                        el.classList.add('active');
-                    });
-
-                    setTimeout(typeHeroEffect, 200);
-                    
+                    // Trigger fade out and line pulse right after text locks in
                     setTimeout(() => {
-                        preloader.style.display = 'none';
-                    }, 600);
+                        nameTarget.classList.add('fade-out');
+                        pulseTarget.classList.add('active');
+                        
+                        // Lift panels and open up main framework body
+                        setTimeout(() => {
+                            preloader.classList.add('preloader-loaded');
+                            document.body.classList.remove('no-scroll');
+                            
+                            setTimeout(() => {
+                                initParticles();
+                                document.querySelectorAll('#home .reveal').forEach(el => el.classList.add('active'));
+                                setTimeout(typeHeroEffect, 200);
+                                
+                                setTimeout(() => {
+                                    preloader.style.display = 'none';
+                                }, 600);
+                            }, 100);
+                        }, 500);
+                    }, 250);
+                }
+                iterations += 2; // Steps by 2 characters per cycle for high-speed calculation
+            }, 30); // Dynamic text generation loop
 
-                }, 100); 
-
-            }, 1200); 
         });
 
         // 1. Initialize Particles.js
