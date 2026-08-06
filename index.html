@@ -54,79 +54,101 @@
             overflow: hidden;
         }
 
-        /* --- Option 2: Orbital Expansion Preloader --- */
-        #preloader-orbit {
+        /* --- Option 1: Cryptographic Decrypt Preloader --- */
+        #preloader-split {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: var(--bg-panel);
             z-index: 9999;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.6s ease;
+            flex-direction: column;
             pointer-events: all;
         }
 
-        .orbit-wrapper {
-            position: relative;
+        .split-panel {
+            width: 100%;
+            height: 50vh;
+            background-color: var(--bg-panel);
+            transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .top-panel {
+            transform-origin: top;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        .bottom-panel {
+            transform-origin: bottom;
+            border-top: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        .preloader-name {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            text-align: center;
+            width: 90%;
+            max-width: 850px;
+            z-index: 10001;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+            transition: opacity 0.3s ease, letter-spacing 0.3s ease, filter 0.3s ease;
+        }
+
+        .preloader-name.fade-out {
+            opacity: 0;
+            letter-spacing: 5px;
+            filter: blur(4px);
+        }
+
+        .pulse-line-container {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            transform: translateY(-50%);
             display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 10000;
         }
 
-        .orbit-ring {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            border-top-color: var(--accent-blue);
-            border-bottom-color: var(--accent-blue);
-            animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
-            transition: transform 0.8s cubic-bezier(0.55, 0.085, 0.68, 0.53), opacity 0.6s ease, border-width 0.8s ease;
+        .pulse-line {
+            width: 0%;
+            height: 2px;
+            background-color: var(--text-light);
+            box-shadow: 0 0 15px var(--accent-blue), 0 0 30px var(--accent-blue);
         }
 
-        .orbit-core {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--text-light);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--text-light);
-            transition: transform 0.4s ease, opacity 0.4s ease;
-            animation: pulseCore 1.2s infinite alternate;
+        .pulse-line.active {
+            animation: drawPulse 0.5s ease-in-out forwards;
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
+        @keyframes drawPulse {
+            0% { width: 0%; opacity: 0; }
+            20% { opacity: 1; }
+            80% { width: 100%; opacity: 1; }
+            100% { width: 100%; opacity: 0; } 
         }
 
-        @keyframes pulseCore {
-            0% { transform: scale(0.8); opacity: 0.7; }
-            100% { transform: scale(1.2); opacity: 1; }
+        .preloader-loaded .top-panel {
+            transform: translateY(-100%);
         }
 
-        /* Explosion / Reveal Triggers */
-        .preloader-loaded .orbit-ring {
-            transform: scale(40); /* Explodes outward */
-            opacity: 0;
-            border-width: 0.5px;
-            animation: none; /* Stops spinning during explosion */
-        }
-
-        .preloader-loaded .orbit-core {
-            transform: scale(0); /* Shrinks to nothing */
-            opacity: 0;
-            animation: none;
+        .preloader-loaded .bottom-panel {
+            transform: translateY(100%);
         }
 
         .preloader-loaded {
-            opacity: 0;
             pointer-events: none;
-            transition-delay: 0.4s; /* Waits for ring to expand before fading background */
         }
 
         /* --- Particle Background Layer --- */
@@ -499,6 +521,8 @@
             .hero-title { font-size: 2rem; }
             .skill-card h4 { font-size: 1.25rem; }
             
+            .preloader-name { font-size: 0.85rem; letter-spacing: 2px; }
+
             .contact-flex-container {
                 flex-direction: column;
                 align-items: flex-start;
@@ -513,10 +537,12 @@
 </head>
 <body class="no-scroll">
 
-    <div id="preloader-orbit">
-        <div class="orbit-wrapper">
-            <div class="orbit-ring"></div>
-            <div class="orbit-core"></div>
+    <div id="preloader-split">
+        <div id="decrypt-target" class="preloader-name"></div>
+        <div class="split-panel top-panel"></div>
+        <div class="split-panel bottom-panel"></div>
+        <div class="pulse-line-container">
+            <div id="pulse-target" class="pulse-line"></div>
         </div>
     </div>
 
@@ -677,34 +703,51 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // High-Speed Sequence Management (< 2 Seconds Total)
+        // Option 1: High-Speed Cryptographic Decrypt Preloader Sequence (< 2 Seconds Total)
         document.addEventListener('DOMContentLoaded', () => {
-            const preloader = document.getElementById('preloader-orbit');
-
-            // Wait 1.2s before triggering the orbital explosion
-            setTimeout(() => {
-                preloader.classList.add('preloader-loaded');
-                document.body.classList.remove('no-scroll');
+            const preloader = document.getElementById('preloader-split');
+            const nameTarget = document.getElementById('decrypt-target');
+            const pulseTarget = document.getElementById('pulse-target');
+            
+            const fullName = "Sirivuri Srinivasa Sandeep Varma";
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+            let iterations = 0;
+            
+            // Fast matrix text initialization
+            let decryptInterval = setInterval(() => {
+                nameTarget.innerText = fullName.split("").map((letter, index) => {
+                    if(letter === " ") return " ";
+                    if(index < iterations) return fullName[index];
+                    return chars[Math.floor(Math.random() * chars.length)];
+                }).join("");
                 
-                // Fire main layout features right after the explosion starts
-                setTimeout(() => {
-                    initParticles();
+                if(iterations >= fullName.length) {
+                    clearInterval(decryptInterval);
                     
-                    document.querySelectorAll('#home .reveal').forEach(el => {
-                        el.classList.add('active');
-                    });
-
-                    // Start text generation on the hero banner
-                    setTimeout(typeHeroEffect, 200);
-                    
-                    // Delete preloader entirely from layout tree to optimize resources
+                    // Trigger fade out and line pulse right after text locks in
                     setTimeout(() => {
-                        preloader.style.display = 'none';
-                    }, 1000); // 1.0s to allow full fadeout
-
-                }, 300); // Wait 0.3s for explosion visual to cover screen
-
-            }, 1200); 
+                        nameTarget.classList.add('fade-out');
+                        pulseTarget.classList.add('active');
+                        
+                        // Lift panels and open up main framework body
+                        setTimeout(() => {
+                            preloader.classList.add('preloader-loaded');
+                            document.body.classList.remove('no-scroll');
+                            
+                            setTimeout(() => {
+                                initParticles();
+                                document.querySelectorAll('#home .reveal').forEach(el => el.classList.add('active'));
+                                setTimeout(typeHeroEffect, 200);
+                                
+                                setTimeout(() => {
+                                    preloader.style.display = 'none';
+                                }, 600);
+                            }, 100);
+                        }, 500);
+                    }, 250);
+                }
+                iterations += 2; // Steps by 2 characters per cycle for high-speed calculation
+            }, 30); // Dynamic text generation loop
         });
 
         // 1. Initialize Particles.js
