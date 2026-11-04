@@ -9,6 +9,13 @@
     <meta name="keywords" content="Sirivuri Srinivasa Sandeep Varma, Sandeep Varma portfolio, AI, Cybersecurity, Information Management, Tech Enthusiast, Software Engineer">
     <meta name="author" content="Sirivuri Srinivasa Sandeep Varma">
     
+    <!-- Open Graph Social Preview Tags -->
+    <meta property="og:title" content="Sirivuri Srinivasa Sandeep Varma | Portfolio">
+    <meta property="og:description" content="Tech Enthusiast building foundations in Cybersecurity, AI, and Information Management.">
+    <meta property="og:image" content="profile.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
     <link rel="icon" type="image/jpeg" href="profile.jpg">
     <link rel="shortcut icon" type="image/jpeg" href="profile.jpg">
     <link rel="apple-touch-icon" href="profile.jpg">
@@ -52,6 +59,26 @@
 
         body.no-scroll {
             overflow: hidden;
+        }
+
+        /* --- Premium Custom Scrollbar & Text Selection --- */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 5px;
+            border: 2px solid var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4f46e5;
+        }
+        ::selection {
+            background: var(--accent-glow);
+            color: var(--text-light);
         }
 
         /* --- Option 1: Cryptographic Decrypt Preloader --- */
@@ -358,20 +385,97 @@
             box-shadow: 0 8px 25px var(--accent-glow);
         }
 
+        /* --- Tech Stack Marquee (NEW) --- */
+        .tech-stack-marquee {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(15, 23, 42, 0.4);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.5rem 0;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem; /* Spacing before About section */
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        .tech-pill {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--text-light);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            backdrop-filter: blur(8px);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .tech-pill:hover {
+            background: var(--accent-blue);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.8; }
             100% { transform: scale(1.03); opacity: 0.4; }
         }
 
-        /* --- Ultra Liquid Glass Panels --- */
-        .about-card {
+        /* --- Ultra Liquid Glass Panels with Spotlight Effect (UPDATED) --- */
+        .about-card, .skill-card, .project-card {
             background: var(--glass-bg);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            padding: 3rem;
             border-radius: 14px;
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden; /* Keeps the spotlight strictly inside the card */
+            z-index: 1;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        /* The Spotlight Gradient Layer */
+        .about-card::before, .skill-card::before, .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                rgba(99, 102, 241, 0.15),
+                transparent 40%
+            );
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none; /* Allows clicks to pass through */
+            z-index: -1; 
+        }
+
+        .about-card:hover::before, .skill-card:hover::before, .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .about-card {
+            padding: 3rem;
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
@@ -390,14 +494,8 @@
         }
 
         .skill-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             padding: 2rem;
             border-radius: 10px;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -405,7 +503,7 @@
             gap: 1rem;
         }
         
-        .skill-card:hover {
+        .about-card:hover, .skill-card:hover, .project-card:hover {
             transform: translateY(-6px);
             border-color: var(--accent-blue);
             background: rgba(255, 255, 255, 0.06);
@@ -421,28 +519,14 @@
         /* --- Projects Section (Stacked Layout) --- */
         .projects-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Changed to single column stacking */
-            gap: 3rem; /* Increased gap for better vertical pacing */
+            grid-template-columns: 1fr; 
+            gap: 3rem; 
             max-width: 900px;
             margin: 0 auto;
         }
 
         .project-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 3rem; /* Slightly more padding for the larger stacked cards */
-            border-radius: 14px;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--accent-blue);
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 20px 48px 0 rgba(99, 102, 241, 0.25), inset 0 1px 2px 0 rgba(255, 255, 255, 0.3);
+            padding: 3rem; 
         }
 
         .project-card h3 {
@@ -633,6 +717,30 @@
             </a>
         </div>
     </section>
+
+    <!-- NEW: Tech Stack Infinite Marquee -->
+    <div class="tech-stack-marquee reveal" style="transition-delay: 0.6s;">
+        <div class="marquee-content">
+            <!-- First Set -->
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">HTML5 & CSS3</span>
+            <span class="tech-pill">Vanilla JS</span>
+            <span class="tech-pill">Data Visualization</span>
+            <span class="tech-pill">SQL</span>
+            <span class="tech-pill">Cybersecurity Fundamentals</span>
+            <span class="tech-pill">Agile / Scrum</span>
+            <span class="tech-pill">IT Project Management</span>
+            <!-- Second Set (Duplicate for seamless infinite scrolling) -->
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">HTML5 & CSS3</span>
+            <span class="tech-pill">Vanilla JS</span>
+            <span class="tech-pill">Data Visualization</span>
+            <span class="tech-pill">SQL</span>
+            <span class="tech-pill">Cybersecurity Fundamentals</span>
+            <span class="tech-pill">Agile / Scrum</span>
+            <span class="tech-pill">IT Project Management</span>
+        </div>
+    </div>
 
     <section id="about" class="section">
         <div class="container">
@@ -908,6 +1016,18 @@
                 if (targetElement) {
                     window.scrollTo({ top: targetElement.offsetTop - navbarHeight, behavior: 'smooth' });
                 }
+            });
+        });
+
+        // 6. NEW: Spotlight Hover Effect for Glass Cards
+        const cards = document.querySelectorAll('.skill-card, .project-card, .about-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
             });
         });
     </script>
