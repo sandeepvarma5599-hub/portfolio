@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Sirivuri Srinivasa Sandeep Varma | Portfolio</title>
-    <meta name="description" content="Portfolio of Sirivuri Srinivasa Sandeep Varma, a Tech & Mechanical Enthusiast building foundations in Cybersecurity, AI and Information Management.">
-    <meta name="keywords" content="Sirivuri Srinivasa Sandeep Varma, Sandeep Varma portfolio, AI, Cybersecurity, Information Management, Mechanical, Software Engineer">
+    <meta name="description" content="Portfolio of Sirivuri Srinivasa Sandeep Varma, a Tech Enthusiast building foundations in Cybersecurity, AI and Information Management.">
+    <meta name="keywords" content="Sirivuri Srinivasa Sandeep Varma, Sandeep Varma portfolio, AI, Cybersecurity, Information Management, Tech Enthusiast, Software Engineer">
     <meta name="author" content="Sirivuri Srinivasa Sandeep Varma">
     
     <link rel="icon" type="image/jpeg" href="profile.jpg">
@@ -418,18 +418,20 @@
             margin-bottom: 0.2rem;
         }
 
-        /* --- Projects Section --- */
+        /* --- Projects Section (Stacked Layout) --- */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr; /* Changed to single column stacking */
+            gap: 3rem; /* Increased gap for better vertical pacing */
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .project-card {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            padding: 2.5rem;
+            padding: 3rem; /* Slightly more padding for the larger stacked cards */
             border-radius: 14px;
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
@@ -446,6 +448,7 @@
         .project-card h3 {
             margin-bottom: 1rem;
             color: var(--accent-blue);
+            font-size: 1.8rem;
         }
 
         .project-tags {
@@ -561,6 +564,7 @@
             .hamburger { display: block; }
             .hero-title { font-size: 2rem; }
             .skill-card h4 { font-size: 1.25rem; }
+            .project-card h3 { font-size: 1.5rem; }
             
             .subsection-title { font-size: 1.5rem; }
             .preloader-name { font-size: 0.85rem; letter-spacing: 2px; }
@@ -574,6 +578,7 @@
             }
             
             .about-card { padding: 2rem 1.5rem; }
+            .project-card { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
@@ -619,7 +624,7 @@
             </div>
 
             <p class="hero-subtitle reveal" style="transition-delay: 0.4s;">
-                Tech & Mechanical Enthusiast | Building Foundations in Cybersecurity, AI and Information Management | 🇩🇪 German B1
+                Tech Enthusiast | Building Foundations in Cybersecurity, AI and Information Management | 🇩🇪 German B1
             </p>
             
             <!-- RESUME BUTTON -->
@@ -635,7 +640,7 @@
             
             <div class="about-card reveal" style="margin-bottom: 4rem;">
                 <p>
-                    I am a driven Tech & Mechanical Enthusiast who recently completed my 12th grade with a focus on Mathematics, Physics, and Chemistry (MPC). My academic background has equipped me with strong analytical and problem-solving skills, which I am actively using to build solid foundations in modern technology fields like AI, Cybersecurity, and Information Management. I am deeply fascinated by how these digital ecosystems intersect with mechanical systems and engineering.
+                    I am a driven Tech Enthusiast who recently completed my 12th grade with a focus on Mathematics, Physics, and Chemistry (MPC). My academic background has equipped me with strong analytical and problem-solving skills, which I am actively using to build solid foundations in modern technology fields like AI, Cybersecurity, and Information Management.
                 </p>
             </div>
             
@@ -717,6 +722,7 @@
         <div class="container">
             <h2 class="section-title reveal">My <span>Work</span></h2>
             
+            <!-- Stacked Projects Layout -->
             <div class="projects-grid">
                 <div class="project-card reveal">
                     <h3>Project Aasha</h3>
@@ -843,7 +849,7 @@
         hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
         document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); }); });
 
-        // 3. NEW: Matrix Decode Effect for Hero Roles
+        // 3. Matrix Decode Effect for Hero Roles
         const typeWriterElement = document.getElementById('typewriter');
         const phrases = [
             "AI Enthusiast",
