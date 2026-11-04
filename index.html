@@ -186,6 +186,18 @@
             color: var(--accent-blue);
         }
 
+        .subsection-title {
+            font-size: 2rem;
+            margin: 4rem 0 2rem;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--text-light);
+        }
+        
+        .subsection-title span {
+            color: var(--accent-blue);
+        }
+
         /* --- Scroll Reveal Animation --- */
         .reveal {
             opacity: 0;
@@ -321,6 +333,29 @@
             color: var(--text-light);
             font-weight: 500;
         }
+        
+        /* Premium Resume Button */
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px var(--accent-glow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .resume-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
 
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.8; }
@@ -345,7 +380,12 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
-            margin-top: 3rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
         }
 
         .skill-card {
@@ -521,6 +561,7 @@
             .hero-title { font-size: 2rem; }
             .skill-card h4 { font-size: 1.25rem; }
             
+            .subsection-title { font-size: 1.5rem; }
             .preloader-name { font-size: 0.85rem; letter-spacing: 2px; }
 
             .contact-flex-container {
@@ -537,6 +578,7 @@
 </head>
 <body class="no-scroll">
 
+    <!-- Option 1: Cryptographic Decrypt Preloader -->
     <div id="preloader-split">
         <div id="decrypt-target" class="preloader-name"></div>
         <div class="split-panel top-panel"></div>
@@ -578,6 +620,11 @@
             <p class="hero-subtitle reveal" style="transition-delay: 0.4s;">
                 Tech & Mechanical Enthusiast | Building Foundations in Cybersecurity, AI and Data Analytics | 🇩🇪 German B1
             </p>
+            
+            <!-- RESUME BUTTON -->
+            <a href="Sandeep_Varma_Resume.pdf" target="_blank" class="resume-btn reveal" style="transition-delay: 0.5s;">
+                View My Resume 📄
+            </a>
         </div>
     </section>
 
@@ -585,87 +632,83 @@
         <div class="container">
             <h2 class="section-title reveal">About <span>Me</span></h2>
             
-            <div class="about-card reveal">
-                <p style="margin-bottom: 2rem;">
+            <div class="about-card reveal" style="margin-bottom: 4rem;">
+                <p>
                     I am a driven Tech & Mechanical Enthusiast who recently completed my 12th grade with a focus on Mathematics, Physics, and Chemistry (MPC). My academic background has equipped me with strong analytical and problem-solving skills, which I am actively using to build solid foundations in modern technology fields like AI, Cybersecurity, and Data Analytics. I am deeply fascinated by how these digital ecosystems intersect with mechanical systems and engineering.
                 </p>
-                
-                <div class="skills-grid">
-                    
-                    <div class="skill-card reveal">
-                        <h4>Core Academics: 12th MPC</h4>
-                        <p style="color: var(--text-main);">
-                            Completed my rigorous 12th-grade curriculum with a strong focus on Mathematics, Physics, and Chemistry. This intensive program developed my core analytical thinking, complex problem-solving abilities, and mathematical logic. Additionally, I secured a <strong>90% score in 12th English</strong>, showcasing strong communication and linguistic skills alongside my technical foundation. These physical science and communication skills act as a powerful launchpad for my transition into advanced computing.
-                        </p>
-                    </div>
-
-                    <div class="skill-card reveal" style="transition-delay: 0.1s;">
-                        <h4>Google AI Professional Certificate</h4>
-                        <p style="color: var(--text-main);">
-                            Mastered the fundamentals of Artificial Intelligence, exploring machine learning principles and real-world applications. This certification provided a strong conceptual framework for how AI systems are designed and deployed in modern tech environments, reinforcing my ability to leverage AI tools for innovative solutions.
-                        </p>
-                        <a href="https://coursera.org/verify/professional-cert/2OQGC7J18CBD" target="_blank" class="tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; margin-top: 0.5rem;">
-                            View Certificate 🔗
-                        </a>
-                    </div>
-                    
-                    <div class="skill-card reveal" style="transition-delay: 0.2s;">
-                        <h4>Google Foundations of Cybersecurity</h4>
-                        <p style="color: var(--text-main);">
-                            Gained a robust understanding of digital security principles, including threat landscapes, network protection, and risk management. This foundational knowledge is crucial for ensuring that the technological solutions I design are secure, resilient, and prepared against modern cyber threats.
-                        </p>
-                        <a href="https://coursera.org/verify/KTY4U4J4QAZU" target="_blank" class="tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; margin-top: 0.5rem;">
-                            View Certificate 🔗
-                        </a>
-                    </div>
-
-                    <div class="skill-card reveal" style="transition-delay: 0.3s;">
-                        <h4>Google Data Analytics Foundations</h4>
-                        <p style="color: var(--text-main);">
-                            Mastered the core principles of data analysis, including data collection, cleaning, and visualization. Gained hands-on experience with spreadsheets, SQL, and modern tools to extract actionable insights from complex data sets.
-                        </p>
-                    </div>
-
-                    <div class="skill-card reveal" style="transition-delay: 0.4s;">
-                        <h4>Stanford University: Introduction to Statistics</h4>
-                        <p style="color: var(--text-main);">
-                            Gained a solid foundation in statistical thinking, covering descriptive statistics, probability models, and inferential methods. This knowledge is essential for making data-driven decisions and understanding the mathematics behind machine learning algorithms.
-                        </p>
-                    </div>
-
-                    <div class="skill-card reveal" style="transition-delay: 0.5s;">
-                        <h4>Dartmouth College: Fundamentals of Digital Transformation</h4>
-                        <p style="color: var(--text-main);">
-                            Explored the strategic frameworks and technologies driving modern digital transformation. Learned how to leverage emerging technologies like AI and data analytics to optimize processes, innovate business models, and adapt to the rapidly evolving tech landscape.
-                        </p>
-                    </div>
-
-                    <div class="skill-card reveal" style="transition-delay: 0.6s;">
-                        <h4>Duke University: Data Science Math Skills</h4>
-                        <p style="color: var(--text-main);">
-                            Completed specialized coursework focusing on the core mathematics required for Data Science. This program strengthened my foundational understanding of set theory, calculus, linear algebra, and probability, providing the analytical backbone necessary to understand complex machine learning algorithms and advanced data analysis frameworks.
-                        </p>
-                    </div>
-
-                    <div class="skill-card reveal" style="transition-delay: 0.7s;">
-                        <h4>Robotics and AI</h4>
-                        <p style="color: var(--text-main);">
-                            Dived into the intersection of physical hardware and intelligent algorithms through Great Learning. This course offered hands-on insights into robotic automation, sensor integration, and how AI acts as the processing core behind autonomous machines.
-                        </p>
-                        <a href="https://www.mygreatlearning.com/certificate/AUBGXIMI?referrer_code=GLKCPUEA" target="_blank" class="tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; margin-top: 0.5rem;">
-                            View Certificate 🔗
-                        </a>
-                    </div>
-
-                    <div class="skill-card reveal" style="transition-delay: 0.8s;">
-                        <h4>🇩🇪 German Language (B1 Level)</h4>
-                        <p style="color: var(--text-main);">
-                            Acquired intermediate proficiency (B1 level) in the German language. This linguistic milestone not only broadens my cultural perspective but also opens up global avenues for collaboration and learning in the European tech ecosystem, known for its leading engineering and automotive innovations.
-                        </p>
-                    </div>
-
+            </div>
+            
+            <!-- SECTION 1: ACADEMICS -->
+            <h3 class="subsection-title reveal">Academic <span>Background</span></h3>
+            <div class="skills-grid" style="margin-bottom: 4rem;">
+                <div class="skill-card reveal" style="transition-delay: 0.1s;">
+                    <h4>Core Academics: 12th MPC</h4>
+                    <p style="color: var(--text-main);">
+                        Completed my rigorous 12th-grade curriculum with a strong focus on Mathematics, Physics, and Chemistry. This intensive program developed my core analytical thinking, complex problem-solving abilities, and mathematical logic. Additionally, I secured a <strong>90% score in 12th English</strong>, showcasing strong communication and linguistic skills alongside my technical foundation. These physical science and communication skills act as a powerful launchpad for my transition into advanced computing.
+                    </p>
                 </div>
             </div>
+
+            <!-- SECTION 2: PROFESSIONAL CERTIFICATIONS -->
+            <h3 class="subsection-title reveal">Professional <span>Certifications</span></h3>
+            <div class="cert-grid" style="margin-bottom: 4rem;">
+                
+                <div class="skill-card reveal" style="transition-delay: 0.2s;">
+                    <h4>Google AI</h4>
+                    <p style="color: var(--text-main);">
+                        Mastered the fundamentals of Artificial Intelligence, exploring machine learning principles and real-world applications. This certification provided a strong conceptual framework for how AI systems are designed and deployed in modern tech environments, reinforcing my ability to leverage AI tools for innovative solutions.
+                    </p>
+                    <a href="https://coursera.org/verify/professional-cert/2OQGC7J18CBD" target="_blank" class="tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; margin-top: 0.5rem;">
+                        View Certificate 🔗
+                    </a>
+                </div>
+                
+                <div class="skill-card reveal" style="transition-delay: 0.3s;">
+                    <h4>Google Foundations of Cybersecurity</h4>
+                    <p style="color: var(--text-main);">
+                        Gained a robust understanding of digital security principles, including threat landscapes, network protection, and risk management. This foundational knowledge is crucial for ensuring that the technological solutions I design are secure, resilient, and prepared against modern cyber threats.
+                    </p>
+                    <a href="https://coursera.org/verify/KTY4U4J4QAZU" target="_blank" class="tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; margin-top: 0.5rem;">
+                        View Certificate 🔗
+                    </a>
+                </div>
+
+                <div class="skill-card reveal" style="transition-delay: 0.4s;">
+                    <h4>Google Foundations of IT Project Management</h4>
+                    <p style="color: var(--text-main);">
+                        Mastered core project management methodologies, including Agile and traditional frameworks. Gained practical experience in project planning, execution, and strategic communication, ensuring that complex tech initiatives are delivered efficiently and successfully.
+                    </p>
+                </div>
+
+                <div class="skill-card reveal" style="transition-delay: 0.5s;">
+                    <h4>Duke University: Data Science Math Skills</h4>
+                    <p style="color: var(--text-main);">
+                        Completed specialized coursework focusing on the core mathematics required for Data Science. This program strengthened my foundational understanding of set theory, calculus, linear algebra, and probability, providing the analytical backbone necessary to understand complex machine learning algorithms and advanced data analysis frameworks.
+                    </p>
+                </div>
+
+                <div class="skill-card reveal" style="transition-delay: 0.6s;">
+                    <h4>Robotics and AI</h4>
+                    <p style="color: var(--text-main);">
+                        Dived into the intersection of physical hardware and intelligent algorithms through Great Learning. This course offered hands-on insights into robotic automation, sensor integration, and how AI acts as the processing core behind autonomous machines.
+                    </p>
+                    <a href="https://www.mygreatlearning.com/certificate/AUBGXIMI?referrer_code=GLKCPUEA" target="_blank" class="tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; margin-top: 0.5rem;">
+                        View Certificate 🔗
+                    </a>
+                </div>
+            </div>
+
+            <!-- SECTION 3: LANGUAGES -->
+            <h3 class="subsection-title reveal">Languages & <span>Global Skills</span></h3>
+            <div class="skills-grid">
+                <div class="skill-card reveal" style="transition-delay: 0.7s;">
+                    <h4>🇩🇪 German Language (B1 Level)</h4>
+                    <p style="color: var(--text-main);">
+                        Acquired intermediate proficiency (B1 level) in the German language through the <strong>Foreign Language Institute Dilsukhnagar</strong>. This linguistic milestone not only broadens my cultural perspective but also opens up global avenues for collaboration and learning in the European tech ecosystem, known for its leading engineering and automotive innovations.
+                    </p>
+                </div>
+            </div>
+
         </div>
     </section>
 
