@@ -385,62 +385,12 @@
             box-shadow: 0 8px 25px var(--accent-glow);
         }
 
-        /* --- Tech Stack Marquee (NEW) --- */
-        .tech-stack-marquee {
-            width: 100%;
-            overflow: hidden;
-            background: rgba(15, 23, 42, 0.4);
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 1.5rem 0;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            margin-bottom: 4rem; /* Spacing before About section */
-        }
-
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 25s linear infinite;
-        }
-
-        .marquee-content:hover {
-            animation-play-state: paused;
-        }
-
-        .tech-pill {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--text-light);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            backdrop-filter: blur(8px);
-            padding: 0.6rem 1.5rem;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 500;
-            margin: 0 1rem;
-            transition: all 0.3s ease;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .tech-pill:hover {
-            background: var(--accent-blue);
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px var(--accent-glow);
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.8; }
             100% { transform: scale(1.03); opacity: 0.4; }
         }
 
-        /* --- Ultra Liquid Glass Panels with Spotlight Effect (UPDATED) --- */
+        /* --- Ultra Liquid Glass Panels with Spotlight Effect --- */
         .about-card, .skill-card, .project-card {
             background: var(--glass-bg);
             backdrop-filter: blur(24px);
@@ -717,30 +667,6 @@
             </a>
         </div>
     </section>
-
-    <!-- NEW: Tech Stack Infinite Marquee -->
-    <div class="tech-stack-marquee reveal" style="transition-delay: 0.6s;">
-        <div class="marquee-content">
-            <!-- First Set -->
-            <span class="tech-pill">Python</span>
-            <span class="tech-pill">HTML5 & CSS3</span>
-            <span class="tech-pill">Vanilla JS</span>
-            <span class="tech-pill">Data Visualization</span>
-            <span class="tech-pill">SQL</span>
-            <span class="tech-pill">Cybersecurity Fundamentals</span>
-            <span class="tech-pill">Agile / Scrum</span>
-            <span class="tech-pill">IT Project Management</span>
-            <!-- Second Set (Duplicate for seamless infinite scrolling) -->
-            <span class="tech-pill">Python</span>
-            <span class="tech-pill">HTML5 & CSS3</span>
-            <span class="tech-pill">Vanilla JS</span>
-            <span class="tech-pill">Data Visualization</span>
-            <span class="tech-pill">SQL</span>
-            <span class="tech-pill">Cybersecurity Fundamentals</span>
-            <span class="tech-pill">Agile / Scrum</span>
-            <span class="tech-pill">IT Project Management</span>
-        </div>
-    </div>
 
     <section id="about" class="section">
         <div class="container">
@@ -1019,7 +945,7 @@
             });
         });
 
-        // 6. NEW: Spotlight Hover Effect for Glass Cards
+        // 6. Spotlight Hover Effect for Glass Cards
         const cards = document.querySelectorAll('.skill-card, .project-card, .about-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
