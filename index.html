@@ -399,7 +399,7 @@
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
             position: relative;
-            overflow: hidden; /* Keeps the spotlight strictly inside the card */
+            overflow: hidden; 
             z-index: 1;
             transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
         }
@@ -416,7 +416,7 @@
             );
             opacity: 0;
             transition: opacity 0.5s ease;
-            pointer-events: none; /* Allows clicks to pass through */
+            pointer-events: none; 
             z-index: -1; 
         }
 
@@ -506,7 +506,7 @@
         /* --- Minimal Contact Section --- */
         .minimal-contact {
             background-color: transparent; 
-            padding: 6rem 0 8rem; 
+            padding: 6rem 0 4rem; 
             border-top: none; 
         }
 
@@ -579,6 +579,62 @@
             fill: currentColor;
         }
 
+        /* --- Footer & Beta Badge --- */
+        .site-footer {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            font-size: 0.9rem;
+            color: rgba(248, 250, 252, 0.7);
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .beta-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: var(--accent-blue);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+        }
+
+        .footer-disclaimer {
+            font-size: 0.8rem;
+            color: rgba(248, 250, 252, 0.5);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -613,6 +669,16 @@
             
             .about-card { padding: 2rem 1.5rem; }
             .project-card { padding: 2rem 1.5rem; }
+            
+            .beta-badge {
+                display: block;
+                margin: 0.5rem auto 0;
+                width: max-content;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -806,6 +872,26 @@
         </div>
     </section>
 
+    <!-- NEW: Site Footer -->
+    <footer class="site-footer reveal">
+        <div class="container" style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+            <p style="margin: 0;">
+                Designed & Engineered by Sirivuri Srinivasa Sandeep Varma 
+                <span class="beta-badge">Beta v1.0</span>
+            </p>
+            <p class="footer-disclaimer">
+                This is a personal portfolio created solely for educational and professional networking purposes. It is non-commercial and not intended to generate revenue.
+            </p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+            <p style="font-size: 0.75rem; color: rgba(248, 250, 252, 0.4); margin-top: 0.5rem; margin-bottom: 0;">
+                &copy; 2026 Sirivuri Srinivasa Sandeep Varma. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
@@ -839,7 +925,7 @@
                             
                             setTimeout(() => {
                                 initParticles();
-                                document.querySelectorAll('#home .reveal').forEach(el => el.classList.add('active'));
+                                document.querySelectorAll('#home .reveal, .site-footer').forEach(el => el.classList.add('active'));
                                 
                                 // Start the new Matrix Decode Hero text animation
                                 setTimeout(decodeHeroEffect, 300);
@@ -918,7 +1004,7 @@
         }
 
         // 4. Scroll Reveal Animation using IntersectionObserver 
-        const revealElements = document.querySelectorAll('.reveal');
+        const revealElements = document.querySelectorAll('.reveal, .site-footer');
         const revealOptions = { threshold: 0.05, rootMargin: "0px 0px -20px 0px" };
 
         const revealOnScroll = new IntersectionObserver(function(entries, observer) {
