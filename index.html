@@ -391,7 +391,7 @@
         }
 
         /* --- Ultra Liquid Glass Panels with Spotlight Effect --- */
-        .about-card, .skill-card, .project-card {
+        .about-card, .skill-card, .project-card, .service-card {
             background: var(--glass-bg);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
@@ -405,7 +405,7 @@
         }
 
         /* The Spotlight Gradient Layer */
-        .about-card::before, .skill-card::before, .project-card::before {
+        .about-card::before, .skill-card::before, .project-card::before, .service-card::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -420,7 +420,7 @@
             z-index: -1; 
         }
 
-        .about-card:hover::before, .skill-card:hover::before, .project-card:hover::before {
+        .about-card:hover::before, .skill-card:hover::before, .project-card:hover::before, .service-card:hover::before {
             opacity: 1;
         }
 
@@ -437,7 +437,6 @@
             gap: 1.5rem;
         }
 
-        /* Stacked Certifications Grid (UPDATED) */
         .cert-grid {
             display: grid;
             grid-template-columns: 1fr; 
@@ -456,7 +455,7 @@
             gap: 1rem;
         }
         
-        .about-card:hover, .skill-card:hover, .project-card:hover {
+        .about-card:hover, .skill-card:hover, .project-card:hover, .service-card:hover {
             transform: translateY(-6px);
             border-color: var(--accent-blue);
             background: rgba(255, 255, 255, 0.06);
@@ -469,7 +468,7 @@
             margin-bottom: 0.2rem;
         }
 
-        /* --- Projects Section (Stacked Layout) --- */
+        /* --- Projects & Service Section (Stacked Layout) --- */
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr; 
@@ -478,11 +477,12 @@
             margin: 0 auto;
         }
 
-        .project-card {
+        .project-card, .service-card {
             padding: 3rem; 
+            text-align: left;
         }
 
-        .project-card h3 {
+        .project-card h3, .service-card h3 {
             margin-bottom: 0.2rem;
             color: var(--accent-blue);
             font-size: 1.8rem;
@@ -545,6 +545,12 @@
             margin-bottom: 1rem;
             font-weight: 500;
             letter-spacing: -1px;
+        }
+        
+        .contact-links-wrapper {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .email-box {
@@ -666,7 +672,7 @@
             .hamburger { display: block; }
             .hero-title { font-size: 2rem; }
             .skill-card h4 { font-size: 1.25rem; }
-            .project-card h3 { font-size: 1.5rem; }
+            .project-card h3, .service-card h3 { font-size: 1.5rem; }
             
             .subsection-title { font-size: 1.5rem; }
             .preloader-name { font-size: 0.85rem; letter-spacing: 2px; }
@@ -680,7 +686,7 @@
             }
             
             .about-card { padding: 2rem 1.5rem; }
-            .project-card { padding: 2rem 1.5rem; }
+            .project-card, .service-card { padding: 2rem 1.5rem; }
             
             .beta-badge {
                 display: block;
@@ -717,7 +723,8 @@
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#service">Service</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -740,7 +747,7 @@
             </p>
             
             <!-- RESUME BUTTON -->
-            <a href="Sandeep_Varma_Resume.pdf" target="_blank" class="resume-btn reveal" style="transition-delay: 0.5s;">
+            <a href="Sandeep_Varma_Resume_2.pdf" target="_blank" class="resume-btn reveal" style="transition-delay: 0.5s;">
                 View My Resume 📄
             </a>
         </div>
@@ -762,7 +769,7 @@
                 <div class="skill-card reveal" style="transition-delay: 0.1s;">
                     <h4>Core Academics: 12th MPC</h4>
                     <p style="color: var(--text-main);">
-                        Completed my rigorous 12th-grade curriculum with a strong focus on Mathematics, Physics, and Chemistry. This intensive program developed my core analytical thinking, complex problem-solving abilities, and mathematical logic. Additionally, I secured a <strong>90% score in 12th English</strong>, showcasing strong communication and linguistic skills alongside my technical foundation. These physical science and communication skills act as a powerful launchpad for my transition into advanced computing.
+                        Completed my rigorous 12th-grade curriculum with a strong focus on Mathematics, Physics, and Chemistry. This intensive program developed my core analytical thinking, complex problem-solving abilities, and mathematical logic. Additionally, I secured a <strong>90% score in 12th English</strong>, showcasing strong communication and linguistic skills alongside my technical foundation. Awarded a Certificate of Appreciation for maintaining a 100% Attendance Record.
                     </p>
                 </div>
             </div>
@@ -774,7 +781,7 @@
                 <div class="skill-card reveal" style="transition-delay: 0.2s;">
                     <h4>Google AI Professional Certificate</h4>
                     <p style="color: var(--text-main);">
-                        Mastered the fundamentals of Artificial Intelligence, exploring machine learning principles and real-world applications. This certification provided a strong conceptual framework for how AI systems are designed and deployed in modern tech environments, reinforcing my ability to leverage AI tools for innovative solutions.
+                        Mastered the fundamentals of Artificial Intelligence, exploring machine learning principles and real-world applications. Completed coursework on using generative AI for planning, research, data analysis, and writing, including clear prompting and output accuracy verification.
                     </p>
                     <a href="https://coursera.org/verify/professional-cert/2OQGC7J18CBD" target="_blank" class="tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; margin-top: 0.5rem;">
                         View Certificate 🔗
@@ -784,7 +791,7 @@
                 <div class="skill-card reveal" style="transition-delay: 0.3s;">
                     <h4>Google Foundations of Cybersecurity</h4>
                     <p style="color: var(--text-main);">
-                        Gained a robust understanding of digital security principles, including threat landscapes, network protection, and risk management. This foundational knowledge is crucial for ensuring that the technological solutions I design are secure, resilient, and prepared against modern cyber threats.
+                        Gained a robust understanding of digital security principles, including threat landscapes, network protection, and risk management. Mastered basics of security risks, threats, and active defense strategies to protect complex systems and corporate data.
                     </p>
                     <a href="https://coursera.org/verify/KTY4U4J4QAZU" target="_blank" class="tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; margin-top: 0.5rem;">
                         View Certificate 🔗
@@ -792,23 +799,23 @@
                 </div>
 
                 <div class="skill-card reveal" style="transition-delay: 0.4s;">
-                    <h4>Google Foundations of IT Project Management</h4>
+                    <h4>Google Foundations of Project Management</h4>
                     <p style="color: var(--text-main);">
-                        Mastered core project management methodologies, including Agile and traditional frameworks. Gained practical experience in project planning, execution, and strategic communication, ensuring that complex tech initiatives are delivered efficiently and successfully.
+                        Mastered core project management methodologies, including Agile and traditional Waterfall frameworks. Gained practical experience in understanding the complete project life cycle, organizational structures, and strategic team leadership requirements.
                     </p>
                 </div>
 
                 <div class="skill-card reveal" style="transition-delay: 0.5s;">
                     <h4>Duke University: Data Science Math Skills</h4>
                     <p style="color: var(--text-main);">
-                        Completed specialized coursework focusing on the core mathematics required for Data Science. This program strengthened my foundational understanding of set theory, calculus, linear algebra, and probability, providing the analytical backbone necessary to understand complex machine learning algorithms and advanced data analysis frameworks.
+                        Completed specialized coursework focusing on the core mathematics required for Data Science. This program strengthened my foundational understanding of set theory, calculus, linear algebra, and probability, providing the analytical backbone necessary for advanced data analysis.
                     </p>
                 </div>
 
                 <div class="skill-card reveal" style="transition-delay: 0.6s;">
                     <h4>Robotics and AI</h4>
                     <p style="color: var(--text-main);">
-                        Dived into the intersection of physical hardware and intelligent algorithms through Great Learning. This course offered hands-on insights into robotic automation, sensor integration, and how AI acts as the processing core behind autonomous machines.
+                        Dived into the intersection of physical hardware and intelligent algorithms through Great Learning. This course offered hands-on insights into sensor-driven robotic automation, hardware integration, and introductory AI concepts acting as the processing core behind autonomous machines.
                     </p>
                     <a href="https://www.mygreatlearning.com/certificate/AUBGXIMI?referrer_code=GLKCPUEA" target="_blank" class="tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; margin-top: 0.5rem;">
                         View Certificate 🔗
@@ -831,28 +838,28 @@
     </section>
 
     <!-- NEW: Experience & Projects Section -->
-    <section id="projects" class="section">
+    <section id="experience" class="section">
         <div class="container">
             <h2 class="section-title reveal">Experience & <span>Projects</span></h2>
             
             <div class="projects-grid">
                 
                 <div class="project-card reveal">
-                    <h3>Founding Team Member @ ThePeerWave</h3>
-                    <span class="project-date">Oct 2026 - Present</span>
-                    <p>Served as a founding member focusing on Technical & Growth operations for ThePeerWave (Parent: 20+2). Tested the platform regularly to identify and resolve technical bugs, ensuring seamless feature rollouts. Simultaneously managed online marketing and digital advertising campaigns to drive new user acquisition, collaborating directly with the founders on weekly product updates and day-to-day strategic operations.</p>
+                    <h3>Founding Team Member (Marketing & Growth) @ ThePeerWave</h3>
+                    <span class="project-date">Oct 2026 - Present | Remote</span>
+                    <p>Actively building and growing a peer-to-peer student networking platform featuring live global lounges and student directories. Managing official social media profiles and creating targeted content to organically grow the student user base. Testing site features, locating technical bugs, and optimizing the overall user experience.</p>
                     <div class="project-tags">
-                        <span class="tag">Technical Testing</span>
+                        <span class="tag">Product Testing</span>
                         <span class="tag">Startup Operations</span>
                         <span class="tag">Digital Marketing</span>
-                        <span class="tag">Bug Fixing</span>
+                        <span class="tag">Social Media Growth</span>
                     </div>
                 </div>
 
                 <div class="project-card reveal" style="transition-delay: 0.2s;">
                     <h3>Store & Inventory Assistant @ 90s Cafe</h3>
                     <span class="project-date">Aug 2026 - Oct 2026</span>
-                    <p>Tracked and managed daily stock levels for over 50 cafe ingredients and supplies, optimizing inventory flow to prevent shortages and minimize waste. Maintained highly organized digital records of store purchases, vendor deliveries, and daily sales logs, while directly assisting with kitchen preparations and customer order fulfillment during peak high-volume hours.</p>
+                    <p>Tracked and managed daily stock levels for over 50 cafe ingredients and supplies, optimizing inventory flow to prevent shortages and minimize waste. Maintained highly organized records of store purchases, vendor deliveries, and daily sales logs, while directly assisting with kitchen preparations and customer order fulfillment during peak hours.</p>
                     <div class="project-tags">
                         <span class="tag">Inventory Management</span>
                         <span class="tag">Record Keeping</span>
@@ -863,10 +870,10 @@
 
                 <div class="project-card reveal" style="transition-delay: 0.4s;">
                     <h3>Project Aasha (NASA / NSS Space Settlement)</h3>
-                    <span class="project-date">1st Place School Rank</span>
-                    <p>A comprehensive research and design project developed for the NSS Space Settlement Contest. The project focuses on conceptualizing sustainable and self-sufficient human habitats in space. Calculated rotation speeds for artificial gravity, stable orbital paths, and daily resource mechanics (air, water, food) utilizing advanced mathematics and physics.</p>
+                    <span class="project-date">1st Place School Rank | 2023</span>
+                    <p>Co-designed a 6-torus orbital settlement in Geosynchronous Orbit (GEO) housing 40,000 residents as part of an 8-member team, submitting a 57-page engineering and financial proposal. Created a $1.59 trillion financial budget covering hull materials, solar arrays, and internal transport backed by an asteroid mining revenue model. Planned daily operations including a 40.58M liter water supply and 134 tons of daily waste recycling.</p>
                     <div class="project-tags">
-                        <span class="tag">Space Exploration</span>
+                        <span class="tag">Financial Modeling</span>
                         <span class="tag">Physics</span>
                         <span class="tag">Research</span>
                         <span class="tag">NSS Contest</span>
@@ -876,12 +883,36 @@
             </div>
         </div>
     </section>
+    
+    <!-- NEW: Community Service Section -->
+    <section id="service" class="section">
+        <div class="container">
+            <h2 class="section-title reveal">Community <span>Service</span></h2>
+            
+            <div class="projects-grid" style="margin-top: 2rem;">
+                <div class="service-card reveal">
+                    <h3>Core Logistics Volunteer @ Gananayaka Youth</h3>
+                    <span class="project-date">Visakhapatnam, India | 2026</span>
+                    <p>Helped organize a massive community meal distribution (Annadhanam), coordinating safe crowd flow and serving food to over 1,700 people. Managed bulk grocery purchasing logistics and meticulously tracked supplies to ensure zero food waste occurred during the large-scale event.</p>
+                    <div class="project-tags">
+                        <span class="tag">Logistics Coordination</span>
+                        <span class="tag">Crowd Management</span>
+                        <span class="tag">Supply Tracking</span>
+                        <span class="tag">Volunteer Leadership</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="contact" class="minimal-contact">
         <div class="contact-flex-container reveal">
             <div class="contact-left">
                 <h2>Get in touch</h2>
-                <a href="mailto:sandeepvarma7466@gmail.com" class="email-box">sandeepvarma7466@gmail.com</a>
+                <div class="contact-links-wrapper">
+                    <a href="mailto:sandeepvarma7466@gmail.com" class="email-box">sandeepvarma7466@gmail.com</a>
+                    <a href="tel:+917995287466" class="email-box" style="background-color: transparent; border: 1px solid var(--text-light); color: var(--text-light);">+91 79952 87466</a>
+                </div>
             </div>
 
             <div class="contact-right">
@@ -897,7 +928,6 @@
                     </svg>
                 </a>
                 
-                <!-- NEW: Instagram Linked -->
                 <a href="https://instagram.com/sandeep_varma_40" target="_blank" class="social-icon" aria-label="Instagram">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.07M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
@@ -1067,7 +1097,7 @@
         });
 
         // 6. Spotlight Hover Effect for Glass Cards
-        const cards = document.querySelectorAll('.skill-card, .project-card, .about-card');
+        const cards = document.querySelectorAll('.skill-card, .project-card, .service-card, .about-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
